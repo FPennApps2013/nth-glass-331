@@ -31,7 +31,7 @@ h1, h2, h3, h4, h5
     margin: 0px 0px 10px 0px;
     padding: 0px;
     
-    font-weight: 650;
+    font-weight: 550;
 /*    font-family: "Salsa", "HelveticaNeue-Light", "Helvetica Neue Light", Helvetica, Arial, sans-serif;*/
 }
 
@@ -74,11 +74,6 @@ div.black_box
     text-align: center;
 }
 
-.instructions
-{
-    text-align: center;
-}
-
 div.background_photos
 {
     position: relative;
@@ -100,4 +95,22 @@ div.background_photos
       background-size: cover;
 
 -webkit-filter: blur(3px); -moz-filter: blur(3px); -o-filter: blur(3px); -ms-filter: blur(3px); filter: blur(3px);
+}
+
+div.login_button
+{
+    height: 77px;
+    width: 350px;
+    background-image: url('../media/Red-signin_Long_base_44dp.png');
+    background-size: 100% 100%;
+}
+
+div.login_button:hover
+{
+    background-image: url('../media/Red-signin_Long_hover_44dp.png');
+}
+
+div.login_button:active
+{
+    background-image: url('../media/Red-signin_Long_press_44dp.png');
 }
