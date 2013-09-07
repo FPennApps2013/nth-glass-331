@@ -146,11 +146,12 @@ class PageHandler(BaseHandler):
 
     def business(self):
         user = users.get_current_user()
-        if not user: 
-            self.redirect('/')
+        # if not user: 
+            # self.redirect('/')
         context = {
+            'gray' : 'gray',
         }
-        return self.render_string('business', context)
+        return self.render_template('restaurant.html', context)
     
     def populate(self):
         context = {}
