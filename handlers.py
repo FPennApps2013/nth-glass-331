@@ -86,9 +86,10 @@ class PageHandler(BaseHandler):
             self.redirect('/')
         
         #check if google plus user is in database
-        val = Users.filter('email=', user.email());
+        val = Users.all().filter('email=', user.email()).get();
         
-        if(val.len > 0):
+        print user.email()
+        if(val):
             if(val[0].is_business):
                 self.redirect('/business') 
             else:
