@@ -52,23 +52,52 @@ class PageHandler(BaseHandler):
     def root(self):
         user = users.get_current_user()
         if user:
-            self.redirect('/feedme')
+            self.redirect('/authenticate')
         context = {
             'login_url': users.create_login_url(self.request.uri),
         }
         return self.render_template('login.html', context)
 
+    def authenticate(self):
+        user = users.get_current_user()
+        if not user: 
+            self.redirect('/')
+        
+        #check if google plus user is in database 
+        #to get user datapoints should be user.nickname() user.user_id() user.email()
+
+        # we need back 
+            # bool in_database
+            # bool customer (false if business)
+
+        if in_database:
+            if customer:
+                self.redirect('/feedme')
+            else:
+                self.redirect('/business') 
+        else: #if not in database, send to register
+            self.redirect('/register')
+
     def register(self):
+        user = users.get_current_user()
+        if not user: 
+            self.redirect('/')
         context = {
         }
         return self.render_string('register', context)
 
     def feedme(self):
+        user = users.get_current_user()
+        if not user: 
+            self.redirect('/')
         context = {
         }
         return self.render_string('feedme', context)
 
     def business(self):
+        user = users.get_current_user()
+        if not user: 
+            self.redirect('/')
         context = {
         }
         return self.render_string('business', context)
