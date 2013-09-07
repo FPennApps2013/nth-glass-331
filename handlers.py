@@ -11,6 +11,7 @@ class Business(geo.geomodel.GeoModel):
     address = db.StringProperty(required=True)
     menu = db.StringListProperty(required=True)
     name = db.StringProperty(required=True)
+    boo = db.IntegerProperty()
 
 class Customers(db.Model):
     user_id = db.UserProperty()
@@ -84,7 +85,8 @@ class PageHandler(BaseHandler):
         bus = Business(address=add, 
                         menu=menu,
                         location=db.GeoPt(30, -140),
-                        name="Test Restaurant")
+                        name="Test Restaurant",
+                        boo=0)
         bus.location = location
         bus.update_location()
         bus.put()
@@ -93,8 +95,8 @@ class PageHandler(BaseHandler):
     def locate(self):
         context = {}
         result = Business.proximity_fetch(
-                        Business.all(),
-                        geo.geotypes.Point(30, -140),
+                        Business.all().filter("boo =", 0),
+                        db.GeoPt(30, -140),
                         max_results = 5,
                         max_distance = 160934);
 
