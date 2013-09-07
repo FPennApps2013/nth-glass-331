@@ -291,7 +291,32 @@ div.login_button:active
     border-bottom: solid 1px #e5e5e5;
  }
  
- .order
+ .order_item_name
+ {
+    float: left;
+    margin-left: 10px;
+    margin-right: 20px;
+    line-height: 80px;
+    width: 25%;
+    height: 80px;
+    overflow: hidden;
+ }
+ 
+ .order_item_address, .order_item_phone
+ {
+    float: left;
+    margin-right: 20px;
+    line-height: 1.25em;
+    width: 25%;
+    height: 40px;
+    padding: 16px 0px;
+    overflow: hidden;
+ }
+ 
+ .order_item_phone
+ {
+    width: 20%;
+ }
  
  img.business_logo
  {
@@ -364,6 +389,7 @@ div.login_button:active
 .deny
 {
     background: #d14836 !important;
+    margin-right: 10px;
 }
 
 .deny:hover
