@@ -34,6 +34,7 @@ routes = [
     Route('/addbusiness', handler='handlers.PageHandler:addbusiness', name='pages-addbusiness'),
     Route('/feedme', handler='handlers.PageHandler:feedme', name='pages-feedme'),
     Route('/business', handler='handlers.PageHandler:business', name='pages-business'),
+    Route('/user', handler='handlers.PageHandler:user', name='pages-user'),
 		Route('/populate', handler='handlers.PageHandler:populate', name='pages-populate'),
 		Route('/locate', handler='handlers.PageHandler:locate', name='pages-locate'),
 		Route('/contact', handler='handlers.PageHandler:contact', name='pages-contact')
