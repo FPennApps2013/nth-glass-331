@@ -20,7 +20,6 @@ class Users(db.Model):
     is_business = db.BooleanProperty()
 # end data model
 
-
 class BaseHandler(webapp2.RequestHandler):
     """
         BaseHandler for all requests all other handlers will

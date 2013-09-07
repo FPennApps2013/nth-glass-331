@@ -1,16 +1,13 @@
 <!DOCTYPE HTML>
 <html>
     <head>
-        <title>Scotch Base</title>
-        <link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.css">
+        <title>Decisions</title>
+        <link rel="stylesheet" href="/static/stylesheets/main.css">
     </head>
     <body>
-        <div class="container">
-            <div class="row">
-                <div class="span16">
-                    {% block content %}{% endblock %}
-                </div>
-            </div>
+        <div class="page_wrapper">
+        {% block content %}
+        {% endblock %}
         </div>
     </body>
 </html>
