@@ -72,29 +72,59 @@ class BaseHandler(webapp2.RequestHandler):
 
 class PageHandler(BaseHandler):
     def root(self):
-        now = datetime.datetime.now()
-        ten_min_ago = now - datetime.timedelta(minutes=10)
+        user = users.get_current_user()
+        if user:
+            self.redirect('/authenticate')
         context = {
-            'now': now,
-            'ten_min_ago': ten_min_ago
+            'login_url': users.create_login_url(self.request.uri),
         }
         return self.render_template('login.html', context)
 
+    def authenticate(self):
+        user = users.get_current_user()
+        if not user: 
+            self.redirect('/')
+        
+        #check if google plus user is in database 
+        #to get user datapoints should be user.nickname() user.user_id() user.email()
+
+        # we need back 
+            # bool in_database
+            # bool customer (false if business)
+
+        if in_database:
+            if customer:
+                self.redirect('/feedme')
+            else:
+                self.redirect('/business') 
+        else: #if not in database, send to register
+            self.redirect('/register')
+
     def register(self):
+        user = users.get_current_user()
+        if not user: 
+            self.redirect('/')
+
+        #add the user to the database using the same user datapoints
+        #user.nickname() user.user_id() user.email()
+
         context = {
-            'now': datetime.datetime.now(),
         }
         return self.render_string('register', context)
 
     def feedme(self):
+        user = users.get_current_user()
+        if not user: 
+            self.redirect('/')
         context = {
-            'now': datetime.datetime.now(),
         }
         return self.render_string('feedme', context)
 
     def business(self):
+        user = users.get_current_user()
+        if not user: 
+            self.redirect('/')
         context = {
-            'now': datetime.datetime.now(),
         }
         return self.render_string('business', context)
     
