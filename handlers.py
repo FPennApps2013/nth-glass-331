@@ -47,14 +47,14 @@ class PageHandler(BaseHandler):
         }
         return self.render_string('register', context)
 
-	def feedme(self):
-		context = {
-			'now': datetime.datetime.now(),
-		}
-		return self.render_string('feedme', context)
+    def feedme(self):
+        context = {
+            'now': datetime.datetime.now(),
+        }
+        return self.render_string('feedme', context)
 
-	def business(self):
-		context = {
-			'now': datetime.datetime.now(),
-		}
-		return self.render_string('business', context)
+    def business(self):
+        context = {
+            'now': datetime.datetime.now(),
+        }
+        return self.render_string('business', context)
