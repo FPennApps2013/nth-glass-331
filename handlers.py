@@ -86,18 +86,14 @@ class PageHandler(BaseHandler):
             self.redirect('/')
         
         #check if google plus user is in database
-        
-
-        #to get user datapoints should be user.nickname() user.user_id() user.email()
-
-        val = Users.filter("email=", user.email());
+        val = Users.filter('email=', user.email());
         
         if(val.len > 0):
             if(val[0].is_business):
                 self.redirect('/business') 
             else:
                 self.redirect('/feedme')
-        else:
+        else: #user didn't exist so register
            self.redirect('/register')
 
     def register(self):
@@ -105,16 +101,39 @@ class PageHandler(BaseHandler):
         if not user: 
             self.redirect('/')
 
+        context = {
+        }
+        return self.render_template('register.html', context)
+
+    def adduser(self):
+        user = users.get_current_user()
+        if not user: 
+            self.redirect('/')
+
+        #TODO we need to receive the rest of the user information from register.html
+
         #add the user to the database using the same user datapoints
-        #user.nickname() user.user_id() user.email()
         entry = Users(user_id=user.user_id(),
                         is_business=False,
                         email=user.email());
         entry.put()
-        
-        context = {
-        }
-        return self.render_string('register', context)
+
+        #done adding user to database so send them to the correct main page
+        self.redirect('/feedme')
+
+    def addbusiness(self):
+        user = users.get_current_user()
+        if not user:
+            self.redirect('/')
+
+        #add the user to the database using the same user datapoints
+        entry = Users(user_id=user.user_id(),
+                        is_business=True,
+                        email=user.email());
+        entry.put()
+
+        #done adding user to database so send them to the correct main page
+        self.redirect('/business')
 
     def feedme(self):
         user = users.get_current_user()
