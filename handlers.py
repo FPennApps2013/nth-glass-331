@@ -113,7 +113,7 @@ class PageHandler(BaseHandler):
         if not user: 
             self.redirect('/')
 
-        #TODO we need to receive the rest of the user information from register.html
+        #TODO we need to receive the rest of the user information from register.html as a post or something
 
         #add the user to the database using the same user datapoints
         entry = Users(user_id=user.user_id(),

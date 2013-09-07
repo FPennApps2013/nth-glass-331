@@ -4,20 +4,22 @@
 <div class="background_photos"></div>
 <div class="black_box">
     <h1 class="logo">I am a</h1>
-    <a href="/adduser"><div class="register_button">Customer</div></a>
-    <a href="/addbusiness"><div class="register_button">Business</div></a>
+    <a href=""><div class="button register_button">Customer</div></a>
+    <a href=""><div class="button register_button ">Business</div></a>
 </div>
 
 <div class="add_form">
-    <form>
-        Name: <input type="text" name="name"><br>
-        Address: <input type="text" name="address"><br>
-        Phone: <input type="text" name="phone"><br>
-        Allergies:<br>
-        <input type="checkbox" name="allergy" value="milk">milk<br>
-        <input type="checkbox" name="allergy" value="meat">meat<br>
-        <input type="checkbox" name="allergy" value="nuts">nuts<br>
-        <input type="checkbox" name="allergy" value="bitch">don't be a bitch<br>
+    <form action="/adduser" method="post">
+        <input type="text" name="name" placeholder="name">
+        <input type="text" name="address" placeholder="address">
+        <input type="text" name="phone" placeholder="phone">
+        <div class="allergies">
+            <label>Allergies:</label><br>
+            <input type="checkbox" name="allergy" value="milk">milk<br>
+            <input type="checkbox" name="allergy" value="meat">meat<br>
+            <input type="checkbox" name="allergy" value="nuts">nuts<br>
+            <input type="checkbox" name="allergy" value="bitch">don't be a bitch<br>
+        </div>
         <input type="submit" value="Submit">
     </form>
 </div>
