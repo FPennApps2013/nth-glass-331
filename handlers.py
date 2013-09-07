@@ -29,7 +29,7 @@ class Business(geo.geomodel.GeoModel):
     boo = db.IntegerProperty()
 
 class Customers(db.Model):
-    user_id = db.UserProperty()
+    user_id = db.StringProperty()
     phone_number = db.StringProperty()
     restrictions = db.StringListProperty()
 
@@ -85,20 +85,20 @@ class PageHandler(BaseHandler):
         if not user: 
             self.redirect('/')
         
-        #check if google plus user is in database 
+        #check if google plus user is in database
+        
+
         #to get user datapoints should be user.nickname() user.user_id() user.email()
 
-        # we need back 
-            # bool in_database
-            # bool customer (false if business)
-
-        if in_database:
-            if customer:
-                self.redirect('/feedme')
-            else:
+        val = Users.filter("email=", user.email());
+        
+        if(val.len > 0):
+            if(val[0].is_business):
                 self.redirect('/business') 
-        else: #if not in database, send to register
-            self.redirect('/register')
+            else:
+                self.redirect('/feedme')
+        else:
+           self.redirect('/register')
 
     def register(self):
         user = users.get_current_user()
@@ -107,7 +107,11 @@ class PageHandler(BaseHandler):
 
         #add the user to the database using the same user datapoints
         #user.nickname() user.user_id() user.email()
-
+        entry = Users(user_id=user.user_id(),
+                        is_business=False,
+                        email=user.email());
+        entry.put()
+        
         context = {
         }
         return self.render_string('register', context)
