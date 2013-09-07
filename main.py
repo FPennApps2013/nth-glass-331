@@ -28,7 +28,10 @@ routes = [
     #Route('/test-string', handler='handlers.PageHandler:test_string', name='pages-test-string'),
 
     Route('/', handler='handlers.PageHandler:root', name='pages-root'),
+    Route('/authenticate', handler='handlers.PageHandler:authenticate', name='pages-authenticate'),
     Route('/register', handler='handlers.PageHandler:register', name='pages-register'),
+    Route('/adduser', handler='handlers.PageHandler:adduser', name='pages-adduser'),
+    Route('/addbusiness', handler='handlers.PageHandler:addbusiness', name='pages-addbusiness'),
     Route('/feedme', handler='handlers.PageHandler:feedme', name='pages-feedme'),
     Route('/business', handler='handlers.PageHandler:business', name='pages-business'),
 		Route('/populate', handler='handlers.PageHandler:populate', name='pages-populate'),
