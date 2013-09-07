@@ -1,0 +1,78 @@
+body
+{
+    margin: 0px;
+    padding: 0px;
+    
+    font-family: "Lato", "HelveticaNeue-Light", "Helvetica Neue Light", Helvetica, Arial, sans-serif;
+}
+
+div.page_wrapper
+{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    
+    margin: 0px;
+    padding: 0px;
+    
+    /* background stuff */
+}
+
+.gray
+{
+}
+
+h1, h2, h3, h4, h5
+{
+    font-size: 22px;
+    
+    margin: 0px 0px 10px 0px;
+    padding: 0px;
+    
+    font-weight: normal;
+    font-family: "Salsa", "HelveticaNeue-Light", "Helvetica Neue Light", Helvetica, Arial, sans-serif;
+}
+
+p
+{
+    margin: 0px;
+    padding: 0px;
+    
+    font-size: 16px;
+    font-weight: 300;
+}
+
+div.black_box
+{
+    position: relative;
+    margin: 0px auto;
+    margin-top: -125px;
+    
+    top: 50%;
+    
+    height: 200px;
+    width: 350px;
+    padding: 25px;
+    
+    /* background */
+    background: rgb(51,51,51);
+    background: rgba(51,51,51,0.5);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#333333,endColorstr=#333333);
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#333333, endColorstr=#333333)";
+    
+    color: #fff;
+}
+
+.logo
+{
+    font-size: 64px;
+    text-align: center;
+}
+
+.instructions
+{
+    text-align: center;
+}
+
