@@ -31,8 +31,8 @@ h1, h2, h3, h4, h5
     margin: 0px 0px 10px 0px;
     padding: 0px;
     
-    font-weight: normal;
-    font-family: "Salsa", "HelveticaNeue-Light", "Helvetica Neue Light", Helvetica, Arial, sans-serif;
+    font-weight: 650;
+/*    font-family: "Salsa", "HelveticaNeue-Light", "Helvetica Neue Light", Helvetica, Arial, sans-serif;*/
 }
 
 p
@@ -59,10 +59,10 @@ div.black_box
     padding: 25px;
     
     /* background */
-    background: rgb(51,51,51);
+   /* background: rgb(51,51,51);
     background: rgba(51,51,51,0.75);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#333333,endColorstr=#333333);
-    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#333333, endColorstr=#333333)";
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#333333, endColorstr=#333333)"; */
     
     color: #fff;
     z-index: 4;
@@ -70,7 +70,7 @@ div.black_box
 
 .logo
 {
-    font-size: 64px;
+    font-size: 85px;
     text-align: center;
 }
 
@@ -89,4 +89,15 @@ div.background_photos
     
     height: 100%;
     width: 100%;
+
+
+
+     background: url(http://farm2.staticflickr.com/1410/543330359_ddc3295035.jpg) no-repeat center center fixed; 
+     /*background: url( http://farm1.staticflickr.com/62/155903230_afbc19f646.jpg) no-repeat center center fixed; */
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+
+-webkit-filter: blur(3px); -moz-filter: blur(3px); -o-filter: blur(3px); -ms-filter: blur(3px); filter: blur(3px);
 }
