@@ -27,6 +27,8 @@ class Business(geo.geomodel.GeoModel):
     menu = db.StringListProperty(required=True)
     name = db.StringProperty(required=True)
     boo = db.IntegerProperty()
+    open_time = db.TimeProperty()
+    close_time = db.TimeProperty()
 
 class Customers(db.Model):
     user_id = db.StringProperty()
@@ -179,10 +181,32 @@ class PageHandler(BaseHandler):
         rendering = result[0].address;
         return self.render_string(rendering, context);
 
+    def pay(self):
+        request
+
+
+
+
+
+
+
+
+
+
     def contact(self):
         context = {}
-        message = twilio_client.sms.messages.create(to="+17138540345", 
-                from_= "+13474721941", body="Herro Prease");
-        return self.render_string("helloworld", context);
+        #message = twilio_client.sms.messages.create(to="+17138540345", 
+         #       from_= "+13474721941", body="Herro Prease");
+        call = twilio_client.calls.create(to="+17138540345", 
+                from_= "+13474721941", 
+                url="http://localhost:8080/orderML");
+        # issue here with a problematic url.
+        return self.render_string("helloworld", context)
+
+    def orderML(self):
+        context = {}
+        resp = twilio.twiml.Response()
+        resp.say("how is everything going?")
+        return self.render_string(str(resp), context)
 
 
