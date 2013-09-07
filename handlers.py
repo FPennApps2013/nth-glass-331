@@ -2,7 +2,15 @@
 import datetime
 import webapp2
 from webapp2_extras import jinja2
+from google.appengine.ext import db
+from google.appengine.api import users
 
+# data model
+class Business(db.model):
+	name = db.StringProperty(required=true)
+
+
+# end data model
 
 class BaseHandler(webapp2.RequestHandler):
     """
