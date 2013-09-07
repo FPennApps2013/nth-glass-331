@@ -50,29 +50,26 @@ class BaseHandler(webapp2.RequestHandler):
 
 class PageHandler(BaseHandler):
     def root(self):
-        now = datetime.datetime.now()
-        ten_min_ago = now - datetime.timedelta(minutes=10)
+        user = users.get_current_user()
+        if user:
+            self.redirect('/feedme')
         context = {
-            'now': now,
-            'ten_min_ago': ten_min_ago
+            'login_url': users.create_login_url(self.request.uri),
         }
         return self.render_template('login.html', context)
 
     def register(self):
         context = {
-            'now': datetime.datetime.now(),
         }
         return self.render_string('register', context)
 
     def feedme(self):
         context = {
-            'now': datetime.datetime.now(),
         }
         return self.render_string('feedme', context)
 
     def business(self):
         context = {
-            'now': datetime.datetime.now(),
         }
         return self.render_string('business', context)
     

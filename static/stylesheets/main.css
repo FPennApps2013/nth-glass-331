@@ -20,8 +20,11 @@ div.page_wrapper
     /* background stuff */
 }
 
-.gray
+a div
 {
+    text-decoration: none;
+    margin: 0px;
+    padding: 0px;
 }
 
 h1, h2, h3, h4, h5
