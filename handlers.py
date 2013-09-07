@@ -6,11 +6,20 @@ from google.appengine.ext import db
 from google.appengine.api import users
 
 # data model
-class Business(db.model):
-	name = db.StringProperty(required=true)
+class Business(db.Model):
+    address = db.StringProperty(required=True)
+    location = db.GeoPtProperty(required=True)
+    menu = db.StringListProperty(required=True)
 
+class Customers(db.Model):
+    user_id = db.UserProperty()
+    restrictions = db.StringListProperty()
 
+class Users(db.Model):
+    user_id = db.UserProperty()
+    is_business = db.BooleanProperty()
 # end data model
+
 
 class BaseHandler(webapp2.RequestHandler):
     """
@@ -58,3 +67,6 @@ class PageHandler(BaseHandler):
             'now': datetime.datetime.now(),
         }
         return self.render_string('business', context)
+
+
+
