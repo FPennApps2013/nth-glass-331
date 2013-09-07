@@ -30,7 +30,7 @@ class PageHandler(BaseHandler):
             'now': now,
             'ten_min_ago': ten_min_ago
         }
-        return self.render_template('pages_test_filters.html', context)
+        return self.render_template('login.html', context)
 
     def register(self):
         context = {
