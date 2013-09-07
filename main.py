@@ -24,8 +24,13 @@ from webapp2 import Route
 DEBUG = os.environ.get('SERVER_SOFTWARE', '').startswith('Dev')
 
 routes = [
+    #Route('/', handler='handlers.PageHandler:root', name='pages-root'),
+    #Route('/test-string', handler='handlers.PageHandler:test_string', name='pages-test-string'),
+
     Route('/', handler='handlers.PageHandler:root', name='pages-root'),
-    Route('/test-string', handler='handlers.PageHandler:test_string', name='pages-test-string'),
+    Route('/register', handler='handlers.PageHandler:register', name='pages-register'),
+    Route('/feedme', handler='handlers.PageHandler:feedme', name='pages-feedme'),
+    Route('/business', handler='handlers.PageHandler:business', name='pages-business')
     ]
 
 config = {

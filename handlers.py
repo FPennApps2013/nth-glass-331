@@ -33,8 +33,20 @@ class PageHandler(BaseHandler):
         }
         return self.render_template('pages_test_filters.html', context)
 
-    def test_string(self):
+    def register(self):
         context = {
             'now': datetime.datetime.now(),
         }
-        return self.render_string('Now is {{ now|datetimeformat }}', context)
+        return self.render_string('register', context)
+
+	def feedme(self):
+		context = {
+			'now': datetime.datetime.now(),
+		}
+		return self.render_string('feedme', context)
+
+	def business(self):
+		context = {
+			'now': datetime.datetime.now(),
+		}
+		return self.render_string('business', context)
