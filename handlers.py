@@ -82,6 +82,10 @@ class PageHandler(BaseHandler):
         user = users.get_current_user()
         if not user: 
             self.redirect('/')
+
+        #add the user to the database using the same user datapoints
+        #user.nickname() user.user_id() user.email()
+
         context = {
         }
         return self.render_string('register', context)
