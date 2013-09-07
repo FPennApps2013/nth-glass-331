@@ -100,6 +100,18 @@ div.background_photos
 -webkit-filter: blur(3px); -moz-filter: blur(3px); -o-filter: blur(3px); -ms-filter: blur(3px); filter: blur(3px);
 }
 
+div.register_button
+{
+    height:45px;
+    width:150px;
+    background-color:#009939;
+    font-size: 2em;
+    padding:5px;
+    text-align:center;
+    float:left;
+    margin-right:15px;
+}
+
 div.login_button
 {
     height: 77px;
