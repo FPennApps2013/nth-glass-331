@@ -2,8 +2,10 @@ body
 {
     margin: 0px;
     padding: 0px;
-    
     font-family: "Lato", "HelveticaNeue-Light", "Helvetica Neue Light", Helvetica, Arial, sans-serif;
+    color: #444;
+    background-color: #f5f5f5;
+    min-width: 1000px;
 }
 
 div.page_wrapper
@@ -16,6 +18,7 @@ div.page_wrapper
     
     margin: 0px;
     padding: 0px;
+    min-width: 1000px;
     
     /* background stuff */
 }
@@ -29,13 +32,13 @@ a div
 
 h1, h2, h3, h4, h5
 {
-    font-size: 22px;
+    font-size: 2.5em;
     
     margin: 0px 0px 10px 0px;
     padding: 0px;
     
-    font-weight: 550;
-/*    font-family: "Salsa", "HelveticaNeue-Light", "Helvetica Neue Light", Helvetica, Arial, sans-serif;*/
+    font-weight: 300;
+    clear:left;
 }
 
 p
@@ -43,7 +46,7 @@ p
     margin: 0px;
     padding: 0px;
     
-    font-size: 16px;
+    font-size: 1.25em;
     font-weight: 300;
 }
 
@@ -73,8 +76,9 @@ div.black_box
 
 .logo
 {
-    font-size: 85px;
+    font-size: 5em;
     text-align: center;
+    font-weight: 550;
 }
 
 div.background_photos
@@ -116,4 +120,140 @@ div.login_button:hover
 div.login_button:active
 {
     background-image: url('../media/Red-signin_Long_press_44dp.png');
+}
+
+/*******************************************************************************
+ *************************** BUSINESS STYLE ************************************
+ ******************************************************************************/
+ 
+ div.business_wrapper
+ {
+    position: relative;
+    width: 88%;
+    left: 6%;
+    top: 10px;
+    
+    margin: 0px;
+    padding: 0px;
+    padding-bottom: 50px;
+ }
+ 
+ .rounded_container
+ {
+    float: left;
+    height: auto;
+    margin: 0px;
+    margin-bottom: 20px;
+    padding: 0px;
+ }
+ 
+ .menu
+ {
+    width: 55%;
+    margin-left: -4px;
+ }
+ 
+ .business_information
+ {
+    width: 40%;
+    margin-right: 5%;
+    height: 186px;
+ }
+ 
+ .menu_item
+ {
+    width: 100%;
+    height: 60px;
+    background: #fff;
+    border-bottom: solid 1px #e5e5e5;
+ }
+ 
+ .round_top
+ {
+    border-top-left-radius: 0.5em;
+    border-top-right-radius: 0.5em;
+ }
+ 
+ .round_bottom
+ {
+    border-bottom-left-radius: 0.5em;
+    border-bottom-right-radius: 0.5em;
+    border-bottom: none !important;
+ }
+ 
+ .orders
+ {
+    display: block;
+    width: 100%;
+    padding-bottom: 40px;
+ }
+ 
+ .order_item
+ {
+    position: relative;
+    width: 100%;
+    height: 80px;
+    background: #fff;
+    border-bottom: solid 1px #e5e5e5;
+ }
+ 
+ img.business_logo
+ {
+    float: left;
+    width: 100px;
+    margin: 0px;
+    margin-right: 20px;
+    height: 50%;
+ }
+ 
+ .phone
+ {
+    margin-top: 10px;
+ }
+ 
+ 
+.button
+{
+	height: 40px;
+	line-height: 40px;
+	font-size: 1.1em;
+	background-color: #f5f5f5;
+	margin: 0px 4px;
+	padding: 0px 14px;
+	position:relative;
+	display:inline-block;
+	border-radius: 2px;
+	
+	border: 1px solid #dcdcdc;
+	border-color: rgba(0,0,0,.1);
+	color: #444;
+	
+	cursor: pointer;
+}
+
+.accept, .deny
+{
+    top: 20px;
+    right: 0px;
+    float: right !important;
+}
+
+.button:hover
+{
+	border: 1px solid #c6c6c6;
+	background-color: #f8f8f8;
+	-webkit-box-shadow: 0 1px 1px rgba(0,0,0,.1);
+	-moz-box-shadow: 0 1px 1px rgba(0,0,0,.1);
+	box-shadow: 0 1px 1px rgba(0,0,0,.1);
+	color: #222;
+}
+
+.button:active
+{
+	border: 1px solid #c6c6c6;
+	background-color: #f8f8f8;
+	-webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
+	-moz-box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
+	box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
+	color: #222;
 }
