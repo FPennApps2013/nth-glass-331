@@ -6,6 +6,21 @@ from google.appengine.ext import db
 from google.appengine.api import users
 import geo.geomodel
 
+#from twilio.rest import TwilioRestClient
+#from twilio import twiml
+
+
+#TWILIO_ACCOUNT_SID = "AC944b22c32e5665d6d2744b131689e964"
+#TWILIO_AUTH_TOKEN = "df78e3cc5ff61c383d8fe6dbbd0c9b0c"
+
+###### set up twilio client ######
+
+#twilio_client = TwilioRestClient(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
+
+
+
+###### end twilio client #########
+
 # data model
 class Business(geo.geomodel.GeoModel):
     address = db.StringProperty(required=True)
@@ -15,11 +30,18 @@ class Business(geo.geomodel.GeoModel):
 
 class Customers(db.Model):
     user_id = db.UserProperty()
+    phone_number = db.StringProperty()
     restrictions = db.StringListProperty()
 
 class Users(db.Model):
     user_id = db.UserProperty()
     is_business = db.BooleanProperty()
+    email = db.StringProperty()
+
+class Orders(db.Model):
+    ordered_to = db.UserProperty()
+    ordered_from = db.UserProperty()
+    order_time = db.DateProperty()
 
 class Menu(db.Model):
     restriction_list = db.StringListProperty()
@@ -78,14 +100,14 @@ class PageHandler(BaseHandler):
     
     def populate(self):
         context = {}
-        add = "test address"
+        add = "yo momma's house"
         menu = ['fish', 'tacos', 'pizza']
         location = db.GeoPt(30, -140)
         
         bus = Business(address=add, 
                         menu=menu,
-                        location=db.GeoPt(30, -140),
-                        name="Test Restaurant",
+                        location=db.GeoPt(29, -139),
+                        name="Chez Chas",
                         boo=0)
         bus.location = location
         bus.update_location()
@@ -96,10 +118,16 @@ class PageHandler(BaseHandler):
         context = {}
         result = Business.proximity_fetch(
                         Business.all().filter("boo =", 0),
-                        db.GeoPt(30, -140),
+                        db.GeoPt(29, -139),
                         max_results = 5,
                         max_distance = 160934);
-
         rendering = result[0].address;
-        return self.render_string(rendering, context); 
+        return self.render_string(rendering, context);
+
+    def contact(self):
+        context = {}
+   #     message = twilio_client.sms.messages.create(to="+17138540345", 
+    #            from_= "+13474721941", body="Herro Prease");
+        return self.render_string("helloworld", context);
+
 
