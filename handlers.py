@@ -4,12 +4,13 @@ import webapp2
 from webapp2_extras import jinja2
 from google.appengine.ext import db
 from google.appengine.api import users
+import geo.geomodel
 
 # data model
-class Business(db.Model):
+class Business(geo.geomodel.GeoModel):
     address = db.StringProperty(required=True)
-    location = db.GeoPtProperty(required=True)
     menu = db.StringListProperty(required=True)
+    name = db.StringProperty(required=True)
 
 class Customers(db.Model):
     user_id = db.UserProperty()
@@ -18,6 +19,13 @@ class Customers(db.Model):
 class Users(db.Model):
     user_id = db.UserProperty()
     is_business = db.BooleanProperty()
+
+class Menu(db.Model):
+    restriction_list = db.StringListProperty()
+
+class Restrictions(db.Model):
+    restriction_id = db.StringProperty();
+
 # end data model
 
 class BaseHandler(webapp2.RequestHandler):
@@ -66,6 +74,30 @@ class PageHandler(BaseHandler):
             'now': datetime.datetime.now(),
         }
         return self.render_string('business', context)
+    
+    def populate(self):
+        context = {}
+        add = "test address"
+        menu = ['fish', 'tacos', 'pizza']
+        location = db.GeoPt(30, -140)
+        
+        bus = Business(address=add, 
+                        menu=menu,
+                        location=db.GeoPt(30, -140),
+                        name="Test Restaurant")
+        bus.location = location
+        bus.update_location()
+        bus.put()
+        return self.render_string('loaded the business data', context)
 
+    def locate(self):
+        context = {}
+        result = Business.proximity_fetch(
+                        Business.all(),
+                        geo.geotypes.Point(30, -140),
+                        max_results = 5,
+                        max_distance = 160934);
 
+        rendering = result[0].address;
+        return self.render_string(rendering, context); 
 
