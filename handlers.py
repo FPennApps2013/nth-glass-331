@@ -3,7 +3,6 @@ import datetime
 import webapp2
 from webapp2_extras import jinja2
 
-
 class BaseHandler(webapp2.RequestHandler):
     """
         BaseHandler for all requests all other handlers will
