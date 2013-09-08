@@ -33,6 +33,7 @@ class Business(geo.geomodel.GeoModel):
 class Customers(db.Model):
     user_id = db.StringProperty()
     phone_number = db.StringProperty()
+    address = db.StringProperty()
     restrictions = db.StringListProperty()
 
 class Users(db.Model):
@@ -119,22 +120,25 @@ class PageHandler(BaseHandler):
         user_phone = self.request.get("phone");        
         user_dietary = self.request.get("diet", allow_multiple=True);        
 
-        print self.request
 
-        print user_name + " : " + user_address + " : " + user_phone #+ " : " + user_dietary
-
-        for item in user_dietary:
-            print item
-        '''
         #add the user to the database using the same user datapoints
-        entry = Users(user_id=user.user_id(),
-                        is_business=False,
+        new_customer = Customers(
+                        user_id=user.user_id(),
                         email=user.email(),
+                        name=user_name,
+                        phone_number=user_phone,
+                        restrictions=user_dietary
                         );
-        entry.put()
+        new_customer.put()
+        new_user = Users(
+                        user_id=user.user_id(),
+                        email=user.email(),
+                        is_business=False
+                        );
+        new_user.put()
         #done adding user to database so send them to the correct main page
         self.redirect('/feedme')
-        '''
+
     def addbusiness(self):
         user = users.get_current_user()
         if not user:
