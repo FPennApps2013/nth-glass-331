@@ -23,31 +23,32 @@ twilio_client = TwilioRestClient(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
 
 # data model
 class Business(geo.geomodel.GeoModel):
-    user_id = db.UserProperty(required=True)
+    user_id = db.StringProperty(required=True)
     address = db.StringProperty(required=True)
     name = db.StringProperty(required=True)
-    phone_number = db.PhoneNumber(required=True)
+    phone_number = db.PhoneNumberProperty()
     boo = db.IntegerProperty()
     open_time = db.TimeProperty()
     close_time = db.TimeProperty()
 
 class Customers(db.Model):
-    user_id = db.UserProperty()
-    phone_number = db.PhoneNumber()
+    address = db.StringProperty()
+    user_id = db.StringProperty()
+    phone_number = db.PhoneNumberProperty()
     restrictions = db.StringListProperty()
 
 class Users(db.Model):
-    user_id = db.UserProperty(required=True)
+    user_id = db.StringProperty(required=True)
     is_business = db.BooleanProperty()
     email = db.StringProperty()
 
 class Orders(db.Model):
-    ordered_to = db.UserProperty()
-    ordered_from = db.UserProperty()
+    customer_id = db.StringProperty()
+    business_id = db.StringProperty()
     order_time = db.DateProperty()
 
 class Menu(db.Model):
-    user_id = db.UserProperty(required=True)
+    user_id = db.StringProperty(required=True)
     dish_name = db.StringProperty()
     price = db.FloatProperty()
     photo_link = db.LinkProperty()
@@ -121,22 +122,25 @@ class PageHandler(BaseHandler):
         user_phone = self.request.get("phone");        
         user_dietary = self.request.get("diet", allow_multiple=True);        
 
-        print self.request
 
-        print user_name + " : " + user_address + " : " + user_phone #+ " : " + user_dietary
-
-        for item in user_dietary:
-            print item
-        '''
         #add the user to the database using the same user datapoints
-        entry = Users(user_id=user.user_id(),
-                        is_business=False,
+        new_customer = Customers(
+                        user_id=user.user_id(),
                         email=user.email(),
+                        name=user_name,
+                        phone_number=db.PhoneNumber(user_phone),
+                        restrictions=user_dietary
                         );
-        entry.put()
+        new_customer.put()
+        new_user = Users(
+                        user_id=user.user_id(),
+                        email=user.email(),
+                        is_business=False
+                        );
+        new_user.put()
         #done adding user to database so send them to the correct main page
         self.redirect('/feedme')
-        '''
+
     def addbusiness(self):
         user = users.get_current_user()
         if not user:
@@ -154,7 +158,7 @@ class PageHandler(BaseHandler):
         business = Business(user_id=user.user_id(),
                             address=business_address,
                             name=business_name,
-                            phone_number=business_phone)
+                            phone_number=db.PhoneNumber(business_phone))
         business.put()
                             
         #done adding user to database so send them to the correct main page
@@ -166,16 +170,7 @@ class PageHandler(BaseHandler):
             self.redirect('/')
         context = {
         }
-        return self.render_string('feedme', context)
-
-    def user(self):
-        user = users.get_current_user()
-        # if not user: 
-            # self.redirect('/')
-        context = {
-            'gray' : 'gray',
-        }
-        return self.render_template('user.html', context)
+        return self.render_template('feedme.html', context)
 
     def business(self):
         user = users.get_current_user()
