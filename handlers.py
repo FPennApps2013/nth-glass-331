@@ -274,7 +274,9 @@ class PageHandler(BaseHandler):
         context = {}
 
         pt = db.GeoPt(self.request.get("lat"), self.request.get("long"))
-
+        
+        self.response.out.write([self.request.get("lat"), self.request.get("long")])
+        return
         result = Business.proximity_fetch(
                         Business.all().filter("boo =", 0),
                         pt,
@@ -282,7 +284,6 @@ class PageHandler(BaseHandler):
                         max_distance = 160934);
         
         if len(result) != 0 :
-
             q = db.GqlQuery("SELECT * FROM Menu " +
                             "WHERE user_id = " + result[0].user_id);
         
