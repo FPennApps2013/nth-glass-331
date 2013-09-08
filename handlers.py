@@ -114,17 +114,27 @@ class PageHandler(BaseHandler):
         if not user: 
             self.redirect('/')
 
-        #TODO we need to receive the rest of the user information from register.html as a post or something
+        user_name = self.request.get("name");        
+        user_address = self.request.get("address");        
+        user_phone = self.request.get("phone");        
+        user_dietary = self.request.get("diet", allow_multiple=True);        
 
+        print self.request
+
+        print user_name + " : " + user_address + " : " + user_phone #+ " : " + user_dietary
+
+        for item in user_dietary:
+            print item
+        '''
         #add the user to the database using the same user datapoints
         entry = Users(user_id=user.user_id(),
                         is_business=False,
-                        email=user.email());
+                        email=user.email(),
+                        );
         entry.put()
-
         #done adding user to database so send them to the correct main page
         self.redirect('/feedme')
-
+        '''
     def addbusiness(self):
         user = users.get_current_user()
         if not user:
