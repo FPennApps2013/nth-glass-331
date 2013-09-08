@@ -407,6 +407,28 @@ div.your_order.show_me_the_food
     animation-duration: 1s;
 }
 
+ 
+.your_order_restaurant
+ {
+    text-align: center;
+ }
+
+img.your_order_photo
+{
+    width: 100%;
+    height: 200px;
+}
+
+p.your_order_name
+{
+    width: 100%;
+    margin: 10px 0px;
+}
+
+p.your_order_price
+{
+    width: 100%;
+}
 
 .order_button
  {
@@ -571,11 +593,6 @@ div.your_order.show_me_the_food
     display: block;
     width: 100%;
     padding-bottom: 40px;
- }
- 
- .order_restaurant
- {
-    text-align: center;
  }
  
  
