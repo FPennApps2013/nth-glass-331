@@ -17,7 +17,7 @@ $('body').on('click', '.accept', function(){
 
 $('body').on('click', '.deny', function(){
     $(this).closest('.order_item').remove();
-    $('#orders').children('.order-item').first()addClass('round_top');
+    $('#orders').children('.order-item').first().addClass('round_top');
     $('#orders').children('.order-item').last().addClass('round_bottom');
 });
 
