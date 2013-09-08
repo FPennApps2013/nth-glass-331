@@ -34,36 +34,45 @@ function getFood(position)
                  longitude: longitude},
           dataType: "json",
           success: showFood(data),
-          error: errorFood();
+          error: errorFood(),
     });
 }
 
 function showFood(data)
 {
+    if(data.length == 0)
+    {
+        return errorFood();
+    }
+    
     var result = '<div class="your_order">';
     result += '<h1>' + data[0] + '</h1>';
     result += '<img class="order_photo" src="' + data[1] + '">';
     result += '<p class="order_name">' + data[2] + '</p>';
     result += '<p class="order_price">' + data[3] + '</p>';
     result += '<div class="order_button" data-restaurant="' + data[0] + '" data-meal="' + data[2] + '" data-price="' + data[3] + '">Get Your Noms!</div>';
-    $('.pagewidth').append(result);
-    slideResult();
+    result += '</div>';
+    $('.page_wrapper').append(result);
+    
+    $('#feed_button').addClass('slideup');
+    $('div.your_order').addClass('show_me_the_food');
 }
 
 function errorFood()
 {
-    slideResult();
+    var result = '<div class="your_order">';
+    result += '<h1>Sorry, there was an error generating your order.</h1>';
+    result += '</div>';
+    $('.page_wrapper').append(result);
+    
+    $('#feed_button').addClass('slideup');
+    $('div.your_order').addClass('show_me_the_food');
 }
 
 function setLoadingButton()
 {
     var loading_text = 'Loading';
-    loading_text += '<img class="loading_gif" src="../static/media/ajax-loading.gif" />';
+    loading_text += '<img class="loading_gif" src="../static/media/ajax-loader.gif" />';
     $('#feed_button').html(loading_text);
 }
 
-function slideResult()
-{
-    $('#feed_button').addClass('slideup');
-    $('div.your_order').addClass('show_me_the_food');
-}
