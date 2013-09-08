@@ -268,6 +268,14 @@ class PageHandler(BaseHandler):
                         )
         bus.update_location()
         bus.put()
+
+        menu = Menu(user_id="32023",
+                    dish_name="Philly CheeseSteak",
+                    price="$6.34",
+                    photo_link="http://www3.gazette.com/bots/sites/default/files/m3rmh6-m3rmgwphillycheesesteaksandwich.jpg",
+                    restriction_list=["Meat", "Dairy"]
+                        )
+        menu.put()
         return self.render_string('loaded the business data', context)
 
     def locate(self):
