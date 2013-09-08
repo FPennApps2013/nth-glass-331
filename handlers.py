@@ -275,8 +275,10 @@ class PageHandler(BaseHandler):
 
         pt = db.GeoPt(self.request.get("lat"), self.request.get("long"))
         
-        self.response.out.write([self.request.get("lat"), self.request.get("long")])
-        return
+        print(self.request.get("lat"));
+        print(self.request.get("long"));
+        print(pt);
+
         result = Business.proximity_fetch(
                         Business.all().filter("boo =", 0),
                         pt,
