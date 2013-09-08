@@ -74,7 +74,7 @@ function showFood(data)
     result += '<h1 class="your_order_restaurant">' + data['business'] + '</h1>';
     result += '<img class="your_order_photo" src="' + data['image_name'] + '">';
     result += '<p class="your_order_name">' + data['dish_name'] + '</p>';
-    result += '<p class="your_order_price">' + data['price'] + '</p>';
+    result += '<p class="your_order_price">$' + data['price'] + '</p>';
     result += '<div class="order_button" data-restaurant="' + data['business'] + '" data-meal="' + data['dish_name'] + '" data-price="' + data['price'] + '">Get Your Noms!</div>';
     result += '</div>';
     $('.page_wrapper').append(result);
