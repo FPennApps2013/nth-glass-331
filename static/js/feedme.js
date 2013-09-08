@@ -16,7 +16,8 @@ $(document).ready(function () {
         "http://farm4.staticflickr.com/3362/4593964455_89a56d91e9.jpg", //pizza
         "http://farm2.staticflickr.com/1410/543330359_ddc3295035.jpg", //taco
 //        "http://farm1.staticflickr.com/62/155903230_afbc19f646.jpg", //cookie
-        "http://farm4.staticflickr.com/3524/3902076445_7a2213f6ae.jpg" //gyro 
+        "http://farm4.staticflickr.com/3524/3902076445_7a2213f6ae.jpg", //gyro 
+        "http://farm1.staticflickr.com/228/478715579_ebe8db8d25.jpg" //hamburger
     ];
 
     var rand_index = Math.floor((Math.random()*bg_images.length));
