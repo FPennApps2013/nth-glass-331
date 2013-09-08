@@ -32,6 +32,7 @@ class Business(geo.geomodel.GeoModel):
     close_time = db.TimeProperty()
 
 class Customers(db.Model):
+    name = db.StringProperty()
     address = db.StringProperty()
     user_id = db.StringProperty()
     phone_number = db.PhoneNumberProperty()
@@ -146,6 +147,7 @@ class PageHandler(BaseHandler):
                         user_id=user.user_id(),
                         email=user.email(),
                         name=user_name,
+                        address=user_address,
                         phone_number=db.PhoneNumber(user_phone),
                         restrictions=user_dietary
                         );
