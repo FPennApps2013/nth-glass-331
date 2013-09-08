@@ -189,7 +189,9 @@ class PageHandler(BaseHandler):
         business = Business(user_id=user.user_id(),
                             address=business_address,
                             name=business_name,
-                            phone_number=db.PhoneNumber(business_phone))
+                            phone_number=db.PhoneNumber(business_phone),
+                            location=db.GeoPt(30, -140)
+                           )
         business.put()
                             
         #done adding user to database so send them to the correct main page
