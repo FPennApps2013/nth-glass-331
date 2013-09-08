@@ -259,7 +259,7 @@ class PageHandler(BaseHandler):
     
     def populate(self):
         context = {}
-        bus = Business(location=db.GeoPt(39.95, 75.17),
+        bus = Business(location=db.GeoPt(39.95, -75.17),
                         name="Pat's King of Steaks",
                         address="1237 E Passyunk Ave, Philadelphia, PA 19147",
                         boo=0,
