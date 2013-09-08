@@ -16,7 +16,7 @@ $('body').on('click', '.accept', function(){
 
 
 $('body').on('click', '.deny', function(){
-    $(this).closest('menu_item').remove();
+    $(this).closest('.menu_item').remove();
 });
 
 
