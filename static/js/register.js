@@ -8,5 +8,17 @@ $('body').on('click', '.register_button', function(){
     }
 });
 
-        $( "#dietrestrictions" ).buttonset();
+
+$('body').on('click', '.accept', function(){
+    $(this).html('Accepted');
+    $(this).siblings('.deny').remove();
+});
+
+
+$('body').on('click', '.deny', function(){
+    $(this).closest('menu_item').remove();
+});
+
+
+$( "#dietrestrictions" ).buttonset();
 

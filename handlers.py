@@ -259,24 +259,33 @@ class PageHandler(BaseHandler):
     
     def populate(self):
         context = {}
-        add = "yo momma's house"
-        menu = ['fish', 'tacos', 'pizza']
-        location = db.GeoPt(30, -140)
-        
-        bus = Business(address=add, 
-                        menu=menu,
-                        location=db.GeoPt(29, -139),
-                        name="Chez Chas",
-                        boo=0)
-        bus.location = location
+        bus = Business(location=db.GeoPt(39.95, -75.17),
+                        name="Pat's King of Steaks",
+                        address="1237 E Passyunk Ave, Philadelphia, PA 19147",
+                        boo=0,
+                        user_id="32023",
+                        phone_number=db.PhoneNumber("+12154681546")
+                        )
         bus.update_location()
         bus.put()
+
+        menu = Menu(user_id="32023",
+                    dish_name="Philly CheeseSteak",
+                    price="$6.34",
+                    photo_link="http://www3.gazette.com/bots/sites/default/files/m3rmh6-m3rmgwphillycheesesteaksandwich.jpg",
+                    restriction_list=["Meat", "Dairy"]
+                        )
+        menu.put()
         return self.render_string('loaded the business data', context)
 
     def locate(self):
         context = {}
 
         pt = db.GeoPt(self.request.get("lat"), self.request.get("long"))
+        
+        print(self.request.get("lat"));
+        print(self.request.get("long"));
+        print(pt);
 
         result = Business.proximity_fetch(
                         Business.all().filter("boo =", 0),
@@ -285,8 +294,6 @@ class PageHandler(BaseHandler):
                         max_distance = 160934);
         
         if len(result) != 0 :
-            
-
             q = db.GqlQuery("SELECT * FROM Menu " +
                             "WHERE user_id = " + result[0].user_id);
         
@@ -321,23 +328,11 @@ class PageHandler(BaseHandler):
                 from_= "+13474721941", 
                 url="http://food-roulette.appspot.com/orderML");
         # issue here with a problematic url.
-        return self.render_string("helloworld", context)
 
     def orderML(self):
-        #resp = twiml.Response()
-        #resp.say("how is everything going?")
-        #context = {
-        #    'raw_response':str(resp) 
-        #}
-        #return self.render_template("raw_render.html", context)
-        obj = {
-            'business' : "hell",
-            'image_name' : "giffy gif",
-            'dish_name' : "tequila",
-            'price' : 15
-        }
-        self.response.out.write(json.dumps(obj))
-        #self.response.out.write("hellworld")
+        resp = twiml.Response()
+        resp.say("how is everything going?")
+        self.response.out.write(resp) 
 
     def webhook(self):
         context = {}
