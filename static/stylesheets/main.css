@@ -231,22 +231,22 @@ div.add_form
 
 div.add_form.register
 {
-    -webkit-animation-name: display-registration-form; /* Safari 4+ */
+    -webkit-animation-name: display-div; /* Safari 4+ */
     -webkit-animation-timing-function: ease-in-out;
     -webkit-animation-fill-mode: forwards;
     -webkit-animation-duration: 1s;
     
-    -moz-animation-name: display-registration-form; /* Safari 4+ */
+    -moz-animation-name: display-div; /* Safari 4+ */
     -moz-animation-timing-function: ease-in-out;
     -moz-animation-fill-mode: forwards;
     -moz-animation-duration: 1s;
     
-    -o-animation-name: display-registration-form; /* Safari 4+ */
+    -o-animation-name: display-div; /* Safari 4+ */
     -o-animation-timing-function: ease-in-out;
     -o-animation-fill-mode: forwards;
     -o-animation-duration: 1s;
     
-    animation-name: display-registration-form; /* Safari 4+ */
+    animation-name: display-div; /* Safari 4+ */
     animation-timing-function: ease-in-out;
     animation-fill-mode: forwards;
     animation-duration: 1s;
@@ -362,6 +362,91 @@ div.login_button:active
     margin-right: 5%;
     height: 186px;
  }
+ 
+ /*******************************************************************************
+ *************************** FEED ME STYLE ************************************
+ ******************************************************************************/
+div.your_order
+{
+    height: 400px;
+    width: 350px;
+    position:absolute;
+    
+    top: 150%;
+    left: 50%;
+    
+    color:#FFF;
+    
+    margin: 0px;
+    margin-top: -200px;
+    margin-left: -200px;
+    padding: 25px;
+    opacity: 0;
+}
+
+div.your_order.show_me_the_food
+{
+    -webkit-animation-name: display-div; /* Safari 4+ */
+    -webkit-animation-timing-function: ease-in-out;
+    -webkit-animation-fill-mode: forwards;
+    -webkit-animation-duration: 1s;
+    
+    -moz-animation-name: display-div; /* Safari 4+ */
+    -moz-animation-timing-function: ease-in-out;
+    -moz-animation-fill-mode: forwards;
+    -moz-animation-duration: 1s;
+    
+    -o-animation-name: display-div; /* Safari 4+ */
+    -o-animation-timing-function: ease-in-out;
+    -o-animation-fill-mode: forwards;
+    -o-animation-duration: 1s;
+    
+    animation-name: display-div; /* Safari 4+ */
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+    animation-duration: 1s;
+}
+
+
+.order_button
+ {
+    position:relative;
+    font-size:5em;
+    top:20px;
+    margin: auto;
+    color:#FFF;
+    padding:10px;
+    text-align:center;
+    width:400px;
+    height:100px;
+    border-radius:5px;
+    border: 1px solid #d44331;
+    background-color:#dd4b39;
+    margin: -50px 0 0 -200px;
+    -webkit-user-select: none;  
+  -moz-user-select: none;    
+  -ms-user-select: none;      
+  user-select: none;
+ }
+
+.order_button:hover
+{
+    background-color:#df4f3e;
+    border: 1px solid #df5f5f;
+    -webkit-box-shadow: inset 0 0 3px 1px #df6f7f !important;
+    -moz-box-shadow: inset 0 0px 1px #df6f7f;
+    box-shadow: inset 0 1px 1px #df5f5f;
+}
+
+.order_button
+{
+    background-color:#d84634;
+    border: 1px solid #da4836;
+    -webkit-box-shadow: inset 0 1px 2px #d64432 !important;
+    -moz-box-shadow: inset 0 1px 2px #d64432;
+    box-shadow: inset 0 1px 2px #da4836;
+}
+
 
 #feed_button
  {
@@ -400,6 +485,29 @@ div.login_button:active
     -webkit-box-shadow: inset 0 1px 2px #d64432 !important;
     -moz-box-shadow: inset 0 1px 2px #d64432;
     box-shadow: inset 0 1px 2px #da4836;
+}
+
+#feed_button.slideup
+{
+    -webkit-animation-name: slide-off-screen; /* Safari 4+ */
+    -webkit-animation-timing-function: ease-in-out;
+    -webkit-animation-fill-mode: forwards;
+    -webkit-animation-duration: 2s;
+    
+    -moz-animation-name: slide-off-screen; /* Safari 4+ */
+    -moz-animation-timing-function: ease-in-out;
+    -moz-animation-fill-mode: forwards;
+    -moz-animation-duration: 2s;
+    
+    -o-animation-name: slide-off-screen; /* Safari 4+ */
+    -o-animation-timing-function: ease-in-out;
+    -o-animation-fill-mode: forwards;
+    -o-animation-duration: 2s;
+    
+    animation-name: slide-off-screen; /* Safari 4+ */
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+    animation-duration: 2s;
 }
 
  .menu_item
@@ -613,22 +721,22 @@ div.login_button:active
 /*******************************************************************************
  *************************** CSS ANIMATIONS ************************************
  ******************************************************************************/
- @-webkit-keyframes display-registration-form {
+ @-webkit-keyframes display-div {
   0%   { opacity: 0; }
   50%  { opacity: .6;}
   100% { opacity: 1; top: 50%;}
 }
-@-moz-keyframes display-registration-form {
+@-moz-keyframes display-div {
   0%   { opacity: 0; }
   50%  { opacity: .6;}
   100% { opacity: 1; top: 50%;}
 }
-@-o-keyframes display-registration-form {
+@-o-keyframes display-div {
   0%   { opacity: 0; }
   50%  { opacity: .6;}
   100% { opacity: 1; top: 50%;}
 }
-@keyframes display-registration-form {
+@keyframes display-div {
   0%   { opacity: 0; }
   50%  { opacity: .6;}
   100% { opacity: 1; top: 50%;}
