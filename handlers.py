@@ -235,12 +235,20 @@ class PageHandler(BaseHandler):
         if val_results:
             if not val_results.is_business:
                 self.redirect('/feedme') 
-                
-                
+        else: #user is logged into google+ but doesnt have an account yet
+            self.redirect('/register')
+
+        bus = db.GqlQuery("SELECT * FROM Business " +
+                "WHERE user_id = :1", user.user_id())
+        business = bus.get()       
+
         context = {
-            'gray' : 'gray',
-        }
-        return self.render_template('restaurant.html', context)
+            'business_name' : business.name,
+            'business_address' : business.address,
+            'business_phone' : business.phone_number
+        }               
+                
+        return self.render_template('business.html', context)
     
     def populate(self):
         context = {}

@@ -2,13 +2,13 @@
 
 {% block content %}
 <div class="business_wrapper">
-    <h1>Business Name</h1>
+    <h1>{{ business_name }}</h1>
     
     <div class="rounded_container business_information" id="business_information">
         <img class="business_logo"/>
-        <p class="address">3456 Whitney Street #354<br>New Haven, CT 06520</p>
-        <p class="phone">(786)564-4956</p>
-        <p class="hours">Open Hours: 9:00am - 10:00pm</p>
+        <p class="address">{{ business_address }}</p>
+        <p class="phone">{{ business_phone }}</p>
+        <p class="hours">Open Hours: </p>
     </div>
     <div class="rounded_container menu" id="menu">
         <div class="menu_item round_top">
