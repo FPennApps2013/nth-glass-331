@@ -120,15 +120,59 @@ div.background_photos
     height: 100%;
     width: 100%;
 
-    background: url(http://farm4.staticflickr.com/3362/4593964455_89a56d91e9.jpg) no-repeat center center fixed;
-/*    background: url(http://farm2.staticflickr.com/1410/543330359_ddc3295035.jpg) no-repeat center center fixed; */
+    /*background: url(http://farm4.staticflickr.com/3362/4593964455_89a56d91e9.jpg) no-repeat center center fixed;*/
+    background: url(http://farm2.staticflickr.com/1410/543330359_ddc3295035.jpg) no-repeat center center fixed; 
     /*background: url( http://farm1.staticflickr.com/62/155903230_afbc19f646.jpg) no-repeat center center fixed; */
     -webkit-background-size: cover;
     moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
 
--webkit-filter: blur(3px); -moz-filter: blur(3px); -o-filter: blur(3px); -ms-filter: blur(3px); filter: blur(3px);
+    -webkit-filter: blur(3px); -moz-filter: blur(3px); -o-filter: blur(3px); -ms-filter: blur(3px); filter: blur(3px);
+}
+
+div.blackout_background
+{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    
+    z-index: 0;
+    
+    height: 100%;
+    width: 100%;
+
+    background: rgb(0,0,0);
+    background: rgba(0,0,0,0.70);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#000000,endColorstr=#333333);
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#000000, endColorstr=#333333)";
+    
+    -webkit-filter: blur(3px); -moz-filter: blur(3px); -o-filter: blur(3px); -ms-filter: blur(3px); filter: blur(3px);
+    
+    opacity: 0;
+}
+
+div.blackout_background.blackout
+{
+    -webkit-animation-name: blackout-background; /* Safari 4+ */
+    -webkit-animation-timing-function: ease-in-out;
+    -webkit-animation-fill-mode: forwards;
+    -webkit-animation-duration: 2s;
+    
+    -moz-animation-name: blackout-background; /* Safari 4+ */
+    -moz-animation-timing-function: ease-in-out;
+    -moz-animation-fill-mode: forwards;
+    -moz-animation-duration: 2s;
+    
+    -o-animation-name: blackout-background; /* Safari 4+ */
+    -o-animation-timing-function: ease-in-out;
+    -o-animation-fill-mode: forwards;
+    -o-animation-duration: 2s;
+    
+    animation-name: blackout-background; /* Safari 4+ */
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+    animation-duration: 2s;
 }
 
 div.register_button
@@ -142,6 +186,10 @@ div.register_button
     text-align:center;
     float:left;
     margin-right:5px;
+   -webkit-user-select: none;  
+   -moz-user-select: none;    
+   -ms-user-select: none;      
+   user-select: none;
 }
 
 div.register_button:hover 
@@ -249,6 +297,10 @@ div.login_button
     width: 350px;
     background-image: url('../media/Red-signin_Long_base_44dp.png');
     background-size: 100% 100%;
+    -webkit-user-select: none;  
+  -moz-user-select: none;    
+  -ms-user-select: none;      
+  user-select: none;
 }
 
 div.login_button:hover
@@ -326,6 +378,10 @@ div.login_button:active
     border: 1px solid #d44331;
     background-color:#dd4b39;
     margin: -50px 0 0 -200px;
+    -webkit-user-select: none;  
+  -moz-user-select: none;    
+  -ms-user-select: none;      
+  user-select: none;
  }
 
 #feed_button:hover
@@ -490,6 +546,10 @@ div.login_button:active
 	color: #444;
 	
 	cursor: pointer;
+	-webkit-user-select: none;  
+  -moz-user-select: none;    
+  -ms-user-select: none;      
+  user-select: none;
 }
 
 .accept, .deny
@@ -574,6 +634,8 @@ div.login_button:active
   100% { opacity: 1; top: 50%;}
 }
 
+
+
  @-webkit-keyframes slide-off-screen {
   0%   { opacity: 1; }
   50%  { opacity: .4;}
@@ -593,4 +655,23 @@ div.login_button:active
   0%   { opacity: 1; }
   50%  { opacity: .4;}
   100% { opacity: 0; top: -150%;}
+}
+
+
+
+@-webkit-keyframes blackout-background {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+@-moz-keyframes blackout-background {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+@-o-keyframes blackout-background {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+@keyframes blackout-background {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
 }
