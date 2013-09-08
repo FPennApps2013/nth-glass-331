@@ -23,6 +23,11 @@ div.page_wrapper
     /* background stuff */
 }
 
+.hide_overflow
+{
+    overflow: hidden;
+}
+
 a div
 {
     text-decoration: none;
@@ -72,6 +77,29 @@ div.black_box
     
     color: #fff;
     z-index: 4;
+}
+
+div.black_box.slideup
+{
+    -webkit-animation-name: slide-off-screen; /* Safari 4+ */
+    -webkit-animation-timing-function: ease-in-out;
+    -webkit-animation-fill-mode: forwards;
+    -webkit-animation-duration: 2s;
+    
+    -moz-animation-name: slide-off-screen; /* Safari 4+ */
+    -moz-animation-timing-function: ease-in-out;
+    -moz-animation-fill-mode: forwards;
+    -moz-animation-duration: 2s;
+    
+    -o-animation-name: slide-off-screen; /* Safari 4+ */
+    -o-animation-timing-function: ease-in-out;
+    -o-animation-fill-mode: forwards;
+    -o-animation-duration: 2s;
+    
+    animation-name: slide-off-screen; /* Safari 4+ */
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+    animation-duration: 2s;
 }
 
 .logo
@@ -137,29 +165,82 @@ div.register_button:active
 
 div.add_form
 {
+    height: 400px;
+    width: 350px;
     position:absolute;
-    width:300px;
-    height:200px;
-    background-color:rgba(51,51,51,.8);
-    padding:15px;
+    
+    top: 150%;
+    left: 50%;
+    
     color:#FFF;
-    top:90%;
-    left:50%;
-    margin: -150px 0 0 -150px;
+    
+    margin: 0px;
+    margin-top: -200px;
+    margin-left: -200px;
+    padding: 25px;
+    opacity: 0;
+}
+
+div.add_form.register
+{
+    -webkit-animation-name: display-registration-form; /* Safari 4+ */
+    -webkit-animation-timing-function: ease-in-out;
+    -webkit-animation-fill-mode: forwards;
+    -webkit-animation-duration: 1s;
+    
+    -moz-animation-name: display-registration-form; /* Safari 4+ */
+    -moz-animation-timing-function: ease-in-out;
+    -moz-animation-fill-mode: forwards;
+    -moz-animation-duration: 1s;
+    
+    -o-animation-name: display-registration-form; /* Safari 4+ */
+    -o-animation-timing-function: ease-in-out;
+    -o-animation-fill-mode: forwards;
+    -o-animation-duration: 1s;
+    
+    animation-name: display-registration-form; /* Safari 4+ */
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+    animation-duration: 1s;
 }
 
 div.add_form input 
 {
-    width:180px;
-    line-height:1.8em;
-    margin-bottom:8px;
-    padding-left:5px;
+    display: block;
+    margin: auto;
+    width: 90%;
+    font-size: 1.10em;
+    line-height:2.5em;
+    margin-bottom: 10px;
+    padding: 4px 0px 4px 10px;
+    
     border-radius:5px;
+    border: transparent 1px solid;
 }
 
-div.allergies input
+div.add_form input.submit 
 {
-    width:5px;
+    margin-top: 20px;
+    padding: 4px 0px 4px 10px;
+    background: #d14836;
+    color: #fff;
+}
+
+p.dietrestrictions
+{
+    margin: 0px 0px 2px 0px;
+    font-weight: 400;
+}
+
+#dietrestrictions
+{
+    width: 100%;
+    padding-left: 2px;
+}
+
+#dietrestrictions input
+{
+    display: inline-block;
 }
 
 div.login_button
@@ -472,3 +553,44 @@ div.login_button:active
 /*******************************************************************************
  *************************** CSS ANIMATIONS ************************************
  ******************************************************************************/
+ @-webkit-keyframes display-registration-form {
+  0%   { opacity: 0; }
+  50%  { opacity: .6;}
+  100% { opacity: 1; top: 50%;}
+}
+@-moz-keyframes display-registration-form {
+  0%   { opacity: 0; }
+  50%  { opacity: .6;}
+  100% { opacity: 1; top: 50%;}
+}
+@-o-keyframes display-registration-form {
+  0%   { opacity: 0; }
+  50%  { opacity: .6;}
+  100% { opacity: 1; top: 50%;}
+}
+@keyframes display-registration-form {
+  0%   { opacity: 0; }
+  50%  { opacity: .6;}
+  100% { opacity: 1; top: 50%;}
+}
+
+ @-webkit-keyframes slide-off-screen {
+  0%   { opacity: 1; }
+  50%  { opacity: .4;}
+  100% { opacity: 0; top: -150%;}
+}
+@-moz-keyframes slide-off-screen {
+  0%   { opacity: 1; }
+  50%  { opacity: .4;}
+  100% { opacity: 0; top: -150%;}
+}
+@-o-keyframes slide-off-screen {
+  0%   { opacity: 1; }
+  50%  { opacity: .4;}
+  100% { opacity: 0; top: -150%;}
+}
+@keyframes slide-off-screen {
+  0%   { opacity: 1; }
+  50%  { opacity: .4;}
+  100% { opacity: 0; top: -150%;}
+}
