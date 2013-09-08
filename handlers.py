@@ -9,6 +9,7 @@ import geo.geomodel
 from twilio.rest import TwilioRestClient
 from twilio import twiml
 
+import json
 
 TWILIO_ACCOUNT_SID = "AC944b22c32e5665d6d2744b131689e964"
 TWILIO_AUTH_TOKEN = "df78e3cc5ff61c383d8fe6dbbd0c9b0c"
@@ -274,25 +275,43 @@ class PageHandler(BaseHandler):
 
     def locate(self):
         context = {}
+
+        pt = db.GeoPt(self.request.get("lat"), self.request.get("long"))
+
         result = Business.proximity_fetch(
                         Business.all().filter("boo =", 0),
-                        db.GeoPt(29, -139),
+                        pt,
                         max_results = 5,
                         max_distance = 160934);
-        rendering = result[0].address;
-        return self.render_string(rendering, context);
+        
+        if len(result) != 0 :
+            
 
+            q = db.GqlQuery("SELECT * FROM Menu " +
+                            "WHERE user_id = " + result[0].user_id);
+        
+            image_value = ""
+            dish_name = ""
+            price = 0
+            for p in q.run(limit=1):
+                image_value = p["photo_link"]
+                dish_name = p["dish_name"]
+                price = p["price"]
+
+            obj = {
+                'business' : result[0].name,
+                'image_name' : image_value,
+                'dish_name' : dish_name,
+                'price' : price
+            }
+            self.response.out.write(json.dumps(obj))
+        else:
+            self.response.out.write(json.dumps({}))
+        
     def pay(self):
-        request
+        context = {}
 
-
-
-
-
-
-
-
-
+        return self.render_string("testing", context);
 
     def contact(self):
         context = {}
@@ -300,12 +319,28 @@ class PageHandler(BaseHandler):
          #       from_= "+13474721941", body="Herro Prease");
         call = twilio_client.calls.create(to="+17138540345", 
                 from_= "+13474721941", 
-                url="http://localhost:8080/orderML");
+                url="http://food-roulette.appspot.com/orderML");
         # issue here with a problematic url.
         return self.render_string("helloworld", context)
 
     def orderML(self):
+        #resp = twiml.Response()
+        #resp.say("how is everything going?")
+        #context = {
+        #    'raw_response':str(resp) 
+        #}
+        #return self.render_template("raw_render.html", context)
+        obj = {
+            'business' : "hell",
+            'image_name' : "giffy gif",
+            'dish_name' : "tequila",
+            'price' : 15
+        }
+        self.response.out.write(json.dumps(obj))
+        #self.response.out.write("hellworld")
+
+    def webhook(self):
         context = {}
-        resp = twilio.twiml.Response()
-        resp.say("how is everything going?")
-        return self.render_string(str(resp), context)
+        return self.render_string("helloword", context)
+
+
