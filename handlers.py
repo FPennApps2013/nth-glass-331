@@ -216,6 +216,9 @@ class PageHandler(BaseHandler):
                 "WHERE user_id = :1", user.user_id())
         customer = cust.get()       
 
+        if not customer:
+            self.redirect('/register')
+
         context = {
             'user_name' : customer.name,
             'user_address' : customer.address,
@@ -241,6 +244,9 @@ class PageHandler(BaseHandler):
         bus = db.GqlQuery("SELECT * FROM Business " +
                 "WHERE user_id = :1", user.user_id())
         business = bus.get()       
+
+        if not business:
+            self.redirect('/register')
 
         context = {
             'business_name' : business.name,
