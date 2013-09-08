@@ -23,21 +23,22 @@ twilio_client = TwilioRestClient(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
 
 # data model
 class Business(geo.geomodel.GeoModel):
+    user_id = db.UserProperty(required=True)
     address = db.StringProperty(required=True)
-    menu = db.StringListProperty(required=True)
     name = db.StringProperty(required=True)
+    phone_number = db.PhoneNumber(required=True)
     boo = db.IntegerProperty()
     open_time = db.TimeProperty()
     close_time = db.TimeProperty()
 
 class Customers(db.Model):
-    user_id = db.StringProperty()
-    phone_number = db.StringProperty()
     address = db.StringProperty()
+    user_id = db.UserProperty()
+    phone_number = db.PhoneNumber()
     restrictions = db.StringListProperty()
 
 class Users(db.Model):
-    user_id = db.UserProperty()
+    user_id = db.UserProperty(required=True)
     is_business = db.BooleanProperty()
     email = db.StringProperty()
 
@@ -47,10 +48,11 @@ class Orders(db.Model):
     order_time = db.DateProperty()
 
 class Menu(db.Model):
+    user_id = db.UserProperty(required=True)
+    dish_name = db.StringProperty()
+    price = db.FloatProperty()
+    photo_link = db.LinkProperty()
     restriction_list = db.StringListProperty()
-
-class Restrictions(db.Model):
-    restriction_id = db.StringProperty();
 
 # end data model
 
@@ -147,9 +149,18 @@ class PageHandler(BaseHandler):
         #add the user to the database using the same user datapoints
         entry = Users(user_id=user.user_id(),
                         is_business=True,
-                        email=user.email());
+                        email=user.email())
         entry.put()
-
+        
+        business_name = self.request.get("name");        
+        business_address = self.request.get("address");        
+        business_phone = self.request.get("phone");
+        business = Business(user_id=user.user_id(),
+                            address=business_address,
+                            name=business_name,
+                            phone_number=business_phone)
+        business.put()
+                            
         #done adding user to database so send them to the correct main page
         self.redirect('/business')
 
