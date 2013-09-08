@@ -170,16 +170,7 @@ class PageHandler(BaseHandler):
             self.redirect('/')
         context = {
         }
-        return self.render_string('feedme', context)
-
-    def user(self):
-        user = users.get_current_user()
-        # if not user: 
-            # self.redirect('/')
-        context = {
-            'gray' : 'gray',
-        }
-        return self.render_template('user.html', context)
+        return self.render_template('feedme.html', context)
 
     def business(self):
         user = users.get_current_user()
