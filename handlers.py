@@ -33,6 +33,7 @@ class Business(geo.geomodel.GeoModel):
     close_time = db.TimeProperty()
 
 class Customers(db.Model):
+    name = db.StringProperty()
     address = db.StringProperty()
     user_id = db.StringProperty()
     phone_number = db.PhoneNumberProperty()
@@ -108,9 +109,11 @@ class PageHandler(BaseHandler):
         if not user: 
             self.redirect('/')
         
-        val = Users.all().filter('email=', user.email()).get();
-        if(val):
-            if(val[0].is_business):
+        val = db.GqlQuery("SELECT * FROM Users " +
+                "WHERE email = :1", user.email())
+        val_results = val.get()       
+        if val_results:
+            if val_results.is_business:
                 self.redirect('/business') 
             else:
                 self.redirect('/feedme')
@@ -125,9 +128,11 @@ class PageHandler(BaseHandler):
         if not user: 
             self.redirect('/')
         
-        val = Users.all().filter('email=', user.email()).get();
-        if val:
-            if val[0].is_business:
+        val = db.GqlQuery("SELECT * FROM Users " +
+                "WHERE email = :1", user.email())
+        val_results = val.get()       
+        if val_results:
+            if val_results.is_business:
                 self.redirect('/business') 
             else:
                 self.redirect('/feedme')
@@ -143,6 +148,7 @@ class PageHandler(BaseHandler):
                         user_id=user.user_id(),
                         email=user.email(),
                         name=user_name,
+                        address=user_address,
                         phone_number=db.PhoneNumber(user_phone),
                         restrictions=user_dietary
                         );
@@ -161,12 +167,16 @@ class PageHandler(BaseHandler):
         if not user:
             self.redirect('/')
         
-        val = Users.all().filter('email=', user.email()).get();
-        if val:
-            if val[0].is_business:
+        val = db.GqlQuery("SELECT * FROM Users " +
+                "WHERE email = :1", user.email())
+        val_results = val.get()       
+        if val_results:
+            if val_results.is_business:
                 self.redirect('/business') 
             else:
                 self.redirect('/feedme')
+        else: #user is logged into google+ but doesnt have an account yet
+            self.redirect('/register')
         
         #add the user to the database using the same user datapoints
         entry = Users(user_id=user.user_id(),
@@ -180,7 +190,9 @@ class PageHandler(BaseHandler):
         business = Business(user_id=user.user_id(),
                             address=business_address,
                             name=business_name,
-                            phone_number=db.PhoneNumber(business_phone))
+                            phone_number=db.PhoneNumber(business_phone),
+                            location=db.GeoPt(30, -140)
+                           )
         business.put()
                             
         #done adding user to database so send them to the correct main page
@@ -190,29 +202,60 @@ class PageHandler(BaseHandler):
         user = users.get_current_user()
         if not user: 
             self.redirect('/')
-        
-        val = Users.all().filter('email=', user.email()).get();
-        if val:
-            if val[0].is_business:
-                self.redirect('/business')
-        
+
+        #if you are a business and try to go to /feedme        
+        val = db.GqlQuery("SELECT * FROM Users " +
+                "WHERE email = :1", user.email())
+        val_results = val.get()       
+        if val_results:
+            if val_results.is_business:
+                self.redirect('/business') 
+        else: #user is logged into google+ but doesnt have an account yet
+            self.redirect('/register')
+
+        cust = db.GqlQuery("SELECT * FROM Customers " +
+                "WHERE user_id = :1", user.user_id())
+        customer = cust.get()       
+
+        if not customer:
+            self.redirect('/register')
+
         context = {
+            'user_name' : customer.name,
+            'user_address' : customer.address,
+            'user_phone' : customer.phone_number
         }
+
         return self.render_template('feedme.html', context)
 
     def business(self):
         user = users.get_current_user()
         if not user: 
             self.redirect('/')
-        val = Users.all().filter('email=', user.email()).get();
-        if val:
-            if not val[0].is_business:
+        
+        val = db.GqlQuery("SELECT * FROM Users " +
+                "WHERE email = :1", user.email())
+        val_results = val.get()       
+        if val_results:
+            if not val_results.is_business:
                 self.redirect('/feedme') 
-                
+        else: #user is logged into google+ but doesnt have an account yet
+            self.redirect('/register')
+
+        bus = db.GqlQuery("SELECT * FROM Business " +
+                "WHERE user_id = :1", user.user_id())
+        business = bus.get()       
+
+        if not business:
+            self.redirect('/register')
+
         context = {
-            'gray' : 'gray',
-        }
-        return self.render_template('restaurant.html', context)
+            'business_name' : business.name,
+            'business_address' : business.address,
+            'business_phone' : business.phone_number
+        }               
+                
+        return self.render_template('business.html', context)
     
     def populate(self):
         context = {}
