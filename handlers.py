@@ -283,25 +283,30 @@ class PageHandler(BaseHandler):
                         pt,
                         max_results = 5,
                         max_distance = 160934);
+        
+        if len(result) != 0 :
+            
 
-        q = db.GqlQuery("SELECT * FROM Menu " +
+            q = db.GqlQuery("SELECT * FROM Menu " +
                             "WHERE user_id = " + result[0].user_id);
         
-        image_value = ""
-        dish_name = ""
-        price = 0
-        for p in q.run(limit=1):
-            image_value = p["photo_link"]
-            dish_name = p["dish_name"]
-            price = p["price"]
+            image_value = ""
+            dish_name = ""
+            price = 0
+            for p in q.run(limit=1):
+                image_value = p["photo_link"]
+                dish_name = p["dish_name"]
+                price = p["price"]
 
-        obj = {
-            'business' : result[0].name,
-            'image_name' : image_value,
-            'dish_name' : dish_name,
-            'price' : price
-        }
-        self.response.out.write(json.dumps(obj))    
+            obj = {
+                'business' : result[0].name,
+                'image_name' : image_value,
+                'dish_name' : dish_name,
+                'price' : price
+            }
+            self.response.out.write(json.dumps(obj))
+        else:
+            self.response.out.write(json.dumps({}))
         
     def pay(self):
         context = {}
