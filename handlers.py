@@ -182,16 +182,9 @@ class PageHandler(BaseHandler):
         return self.render_string(rendering, context);
 
     def pay(self):
-        request
+        context = {}
 
-
-
-
-
-
-
-
-
+        return self.render_string("testing", context);
 
     def contact(self):
         context = {}
@@ -199,14 +192,20 @@ class PageHandler(BaseHandler):
          #       from_= "+13474721941", body="Herro Prease");
         call = twilio_client.calls.create(to="+17138540345", 
                 from_= "+13474721941", 
-                url="http://localhost:8080/orderML");
+                url="http://food-roulette.appspot.com/orderML");
         # issue here with a problematic url.
         return self.render_string("helloworld", context)
 
     def orderML(self):
-        context = {}
-        resp = twilio.twiml.Response()
+        resp = twiml.Response()
         resp.say("how is everything going?")
-        return self.render_string(str(resp), context)
+        context = {
+            'raw_response':str(resp) 
+        }
+        return self.render_template("raw_render.html", context)
+
+    def webhook(self):
+        context = {}
+        return self.render_string("helloword", context)
 
 

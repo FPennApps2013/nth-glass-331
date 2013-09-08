@@ -36,7 +36,9 @@ routes = [
     Route('/business', handler='handlers.PageHandler:business', name='pages-business'),
 		Route('/populate', handler='handlers.PageHandler:populate', name='pages-populate'),
 		Route('/locate', handler='handlers.PageHandler:locate', name='pages-locate'),
-		Route('/contact', handler='handlers.PageHandler:contact', name='pages-contact')
+		Route('/contact', handler='handlers.PageHandler:contact', name='pages-contact'),
+		Route('/orderML', handler='handlers.PageHandler:orderML', name='pages-orderML'),
+		Route('/webhook', handler='handlers.PageHandler:webhook', name='pages-webhook')
     ]
 
 config = {

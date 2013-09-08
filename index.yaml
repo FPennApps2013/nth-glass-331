@@ -10,3 +10,12 @@ indexes:
 # automatically uploaded to the admin console when you next deploy
 # your application using appcfg.py.
 
+- kind: Business
+  properties:
+  - name: location_geocells
+  - name: bar
+
+- kind: Business
+  properties:
+  - name: location_geocells
+  - name: boo
