@@ -204,9 +204,17 @@ class PageHandler(BaseHandler):
         if val_results:
             if val_results.is_business:
                 self.redirect('/business') 
-        
+
+        cust = db.GqlQuery("SELECT * FROM Customers " +
+                "WHERE user_id = :1", user.user_id())
+        customer = cust.get()       
+
         context = {
+            'user_name':customer.name,
+            'user_address':customer.address,
+            'user_phone':customer.phone_number
         }
+
         return self.render_template('feedme.html', context)
 
     def business(self):
