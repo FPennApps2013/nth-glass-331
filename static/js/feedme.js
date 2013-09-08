@@ -25,18 +25,18 @@ function getLocation()
 function getFood(position)
 {
     var latitude = position.coords.latitude; 
-    var longitude = position.coords.longitude; 
+    var longitude = position.coords.longitude;
+    console.log(latitude, longitude); 
     
     $.ajax({
-          url: "/getFood",
-          type: "POST",
-          data: {latitude: latitude,
-                 longitude: longitude},
+          url: "/locate",
+          type: "post",
+          data: {lat: latitude,
+                 long: longitude},
           dataType: "json",
           success: function(data){
             showFood(data);
-          },
-          error: errorFood(),
+          }
     });
 }
 
@@ -47,12 +47,14 @@ function showFood(data)
         return errorFood();
     }
     
+    console.log(data);
+    
     var result = '<div class="your_order">';
-    result += '<h1 class="order_restaurant">' + data[0] + '</h1>';
-    result += '<img class="order_photo" src="' + data[1] + '">';
-    result += '<p class="order_name">' + data[2] + '</p>';
-    result += '<p class="order_price">' + data[3] + '</p>';
-    result += '<div class="order_button" data-restaurant="' + data[0] + '" data-meal="' + data[2] + '" data-price="' + data[3] + '">Get Your Noms!</div>';
+    result += '<h1 class="order_restaurant">' + data['business'] + '</h1>';
+    result += '<img class="order_photo" src="' + data['image_name'] + '">';
+    result += '<p class="order_name">' + data['dish_name'] + '</p>';
+    result += '<p class="order_price">' + data['price'] + '</p>';
+    result += '<div class="order_button" data-restaurant="' + data['business'] + '" data-meal="' + data['dish_name'] + '" data-price="' + data['price'] + '">Get Your Noms!</div>';
     result += '</div>';
     $('.page_wrapper').append(result);
     
