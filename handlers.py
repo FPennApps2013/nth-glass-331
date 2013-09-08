@@ -107,9 +107,11 @@ class PageHandler(BaseHandler):
         if not user: 
             self.redirect('/')
         
-        val = Users.all().filter('email=', user.email()).get();
-        if(val):
-            if(val[0].is_business):
+        val = db.GqlQuery("SELECT * FROM Users " +
+                "WHERE email = :1", user.email())
+        val_results = val.get()       
+        if val_results:
+            if val_results.is_business:
                 self.redirect('/business') 
             else:
                 self.redirect('/feedme')
@@ -124,9 +126,11 @@ class PageHandler(BaseHandler):
         if not user: 
             self.redirect('/')
         
-        val = Users.all().filter('email=', user.email()).get();
-        if val:
-            if val[0].is_business:
+        val = db.GqlQuery("SELECT * FROM Users " +
+                "WHERE email = :1", user.email())
+        val_results = val.get()       
+        if val_results:
+            if val_results.is_business:
                 self.redirect('/business') 
             else:
                 self.redirect('/feedme')
@@ -160,9 +164,11 @@ class PageHandler(BaseHandler):
         if not user:
             self.redirect('/')
         
-        val = Users.all().filter('email=', user.email()).get();
-        if val:
-            if val[0].is_business:
+        val = db.GqlQuery("SELECT * FROM Users " +
+                "WHERE email = :1", user.email())
+        val_results = val.get()       
+        if val_results:
+            if val_results.is_business:
                 self.redirect('/business') 
             else:
                 self.redirect('/feedme')
@@ -190,10 +196,12 @@ class PageHandler(BaseHandler):
         if not user: 
             self.redirect('/')
         
-        val = Users.all().filter('email=', user.email()).get();
-        if val:
-            if val[0].is_business:
-                self.redirect('/business')
+        val = db.GqlQuery("SELECT * FROM Users " +
+                "WHERE email = :1", user.email())
+        val_results = val.get()       
+        if val_results:
+            if val_results.is_business:
+                self.redirect('/business') 
         
         context = {
         }
@@ -203,10 +211,14 @@ class PageHandler(BaseHandler):
         user = users.get_current_user()
         if not user: 
             self.redirect('/')
-        val = Users.all().filter('email=', user.email()).get();
-        if val:
-            if not val[0].is_business:
+        
+        val = db.GqlQuery("SELECT * FROM Users " +
+                "WHERE email = :1", user.email())
+        val_results = val.get()       
+        if val_results:
+            if not val_results.is_business:
                 self.redirect('/feedme') 
+                
                 
         context = {
             'gray' : 'gray',
