@@ -93,9 +93,9 @@ class PageHandler(BaseHandler):
         #check if google plus user is in database
         val = Users.all().filter('email=', user.email()).get();
         
-        print user.email()
-        if(val):
-            if(val[0].is_business):
+        # print user.email()
+        if val:
+            if val[0].is_business:
                 self.redirect('/business') 
             else:
                 self.redirect('/feedme')
@@ -106,7 +106,14 @@ class PageHandler(BaseHandler):
         user = users.get_current_user()
         if not user: 
             self.redirect('/')
-
+        
+        val = Users.all().filter('email=', user.email()).get();
+        if(val):
+            if(val[0].is_business):
+                self.redirect('/business') 
+            else:
+                self.redirect('/feedme')
+        
         context = {
             'hide_overflow': 'hide_overflow',
         }
@@ -116,7 +123,14 @@ class PageHandler(BaseHandler):
         user = users.get_current_user()
         if not user: 
             self.redirect('/')
-
+        
+        val = Users.all().filter('email=', user.email()).get();
+        if val:
+            if val[0].is_business:
+                self.redirect('/business') 
+            else:
+                self.redirect('/feedme')
+        
         user_name = self.request.get("name");        
         user_address = self.request.get("address");        
         user_phone = self.request.get("phone");        
@@ -145,7 +159,14 @@ class PageHandler(BaseHandler):
         user = users.get_current_user()
         if not user:
             self.redirect('/')
-
+        
+        val = Users.all().filter('email=', user.email()).get();
+        if val:
+            if val[0].is_business:
+                self.redirect('/business') 
+            else:
+                self.redirect('/feedme')
+        
         #add the user to the database using the same user datapoints
         entry = Users(user_id=user.user_id(),
                         is_business=True,
@@ -168,23 +189,25 @@ class PageHandler(BaseHandler):
         user = users.get_current_user()
         if not user: 
             self.redirect('/')
+        
+        val = Users.all().filter('email=', user.email()).get();
+        if val:
+            if val[0].is_business:
+                self.redirect('/business')
+        
         context = {
         }
-        return self.render_string('feedme', context)
-
-    def user(self):
-        user = users.get_current_user()
-        # if not user: 
-            # self.redirect('/')
-        context = {
-            'gray' : 'gray',
-        }
-        return self.render_template('user.html', context)
+        return self.render_template('feedme.html', context)
 
     def business(self):
         user = users.get_current_user()
-        # if not user: 
-            # self.redirect('/')
+        if not user: 
+            self.redirect('/')
+        val = Users.all().filter('email=', user.email()).get();
+        if val:
+            if not val[0].is_business:
+                self.redirect('/feedme') 
+                
         context = {
             'gray' : 'gray',
         }
