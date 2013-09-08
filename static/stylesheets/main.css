@@ -573,6 +573,12 @@ div.your_order.show_me_the_food
     padding-bottom: 40px;
  }
  
+ .order_restaurant
+ {
+    text-align: center;
+ }
+ 
+ 
  .order_item
  {
     position: relative;

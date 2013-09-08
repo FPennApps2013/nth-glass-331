@@ -33,7 +33,9 @@ function getFood(position)
           data: {latitude: latitude,
                  longitude: longitude},
           dataType: "json",
-          success: showFood(data),
+          success: function(data){
+            showFood(data);
+          },
           error: errorFood(),
     });
 }
@@ -46,7 +48,7 @@ function showFood(data)
     }
     
     var result = '<div class="your_order">';
-    result += '<h1>' + data[0] + '</h1>';
+    result += '<h1 class="order_restaurant">' + data[0] + '</h1>';
     result += '<img class="order_photo" src="' + data[1] + '">';
     result += '<p class="order_name">' + data[2] + '</p>';
     result += '<p class="order_price">' + data[3] + '</p>';
@@ -61,7 +63,7 @@ function showFood(data)
 function errorFood()
 {
     var result = '<div class="your_order">';
-    result += '<h1>Sorry, there was an error generating your order.</h1>';
+    result += '<h1 class="order_restaurant">Sorry, there was an error generating your order.</h1>';
     result += '</div>';
     $('.page_wrapper').append(result);
     
@@ -71,8 +73,7 @@ function errorFood()
 
 function setLoadingButton()
 {
-    var loading_text = 'Loading';
-    loading_text += '<img class="loading_gif" src="../static/media/ajax-loader.gif" />';
+    var loading_text = 'Loading...';
     $('#feed_button').html(loading_text);
 }
 
