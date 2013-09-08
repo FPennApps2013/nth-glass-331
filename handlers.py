@@ -271,7 +271,7 @@ class PageHandler(BaseHandler):
 
         menu = Menu(user_id="32023",
                     dish_name="Philly CheeseSteak",
-                    price="$6.34",
+                    price=6.34,
                     photo_link="http://www3.gazette.com/bots/sites/default/files/m3rmh6-m3rmgwphillycheesesteaksandwich.jpg",
                     restriction_list=["Meat", "Dairy"]
                         )
@@ -295,7 +295,7 @@ class PageHandler(BaseHandler):
         
         if len(result) != 0 :
             q = db.GqlQuery("SELECT * FROM Menu " +
-                            "WHERE user_id = " + result[0].user_id);
+                            "WHERE user_id = '" + result[0].user_id + "'");
         
             image_value = ""
             dish_name = ""
