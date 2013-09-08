@@ -14,6 +14,8 @@ import json
 TWILIO_ACCOUNT_SID = "AC944b22c32e5665d6d2744b131689e964"
 TWILIO_AUTH_TOKEN = "df78e3cc5ff61c383d8fe6dbbd0c9b0c"
 
+VENMO_TOKEN = "R8dB25eSKth27w3UFSXNM9shXuxyBp2e"
+
 ###### set up twilio client ######
 
 twilio_client = TwilioRestClient(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
@@ -55,6 +57,12 @@ class Menu(db.Model):
     price = db.FloatProperty()
     photo_link = db.LinkProperty()
     restriction_list = db.StringListProperty()
+
+class Payment(db.Model):
+    payment_id = db.StringProperty()
+    payment_amount = db.FloatProperty()
+    pending = db.BooleanProperty()
+
 
 # end data model
 
@@ -268,14 +276,14 @@ class PageHandler(BaseHandler):
                         )
         bus.update_location()
         bus.put()
-
-        menu = Menu(user_id="32023",
-                    dish_name="Philly CheeseSteak",
-                    price=6.34,
-                    photo_link="http://www3.gazette.com/bots/sites/default/files/m3rmh6-m3rmgwphillycheesesteaksandwich.jpg",
-                    restriction_list=["Meat", "Dairy"]
-                        )
-        menu.put()
+        
+        #menu = Menu(user_id="32023",
+        #            dish_name="Philly CheeseSteak",
+        #            price=6.34,
+        #            photo_link="http://www3.gazette.com/bots/sites/default/files/m3rmh6-m3rmgwphillycheesesteaksandwich.jpg",
+        #            restriction_list=["Meat", "Dairy"]
+        #                )
+        #menu.put()
         return self.render_string('loaded the business data', context)
 
     def locate(self):
@@ -332,10 +340,42 @@ class PageHandler(BaseHandler):
     def orderML(self):
         resp = twiml.Response()
         resp.say("how is everything going?")
-        self.response.out.write(resp) 
+        self.response.out.write(resp)
 
+    def chargepayment(self):
+        context = {}
+        email = self.request.get("email");
+        note = self.request.get("note");
+        amount = -0.01                   # initial amount fixed
+        payment_id = self.request.get("payment_id")
+        # now we need to make the venmo api call.
+        # charge payment to user.
+        
+        payment = Payment(payment_amount=amount,
+                        payment_id=payment_id,
+                        pending=True
+                       )
+        payment.put()
+
+        return self.render_string("payment made", context)
+
+    # function to make payment to business after authentication
     def webhook(self):
         context = {}
-        return self.render_string("helloword", context)
+        data = self.request.get("data")
+        payment_id = data["id"]
+        payment_status = data["status"]
+
+        if status == "settled":
+            # then settled.
+            q = db.GqlQuery("SELECT * FROM Payment " +
+                            "WHERE payment_id = " + payment_id)
+            for p in q.run(limit=1):
+                    vals = {"access_token" : VENMO_TOKEN, 
+                                   "email" : "csjhin@gmail.com",
+                                    "note" : "FoodRoulette",
+                                  "amount" : 0.01}
+                    requests.post("https://api.venmo.com/payments", vals)
+        return self.render_string("request for payment processed", context)
 
 
