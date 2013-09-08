@@ -105,6 +105,7 @@ class PageHandler(BaseHandler):
             self.redirect('/')
 
         context = {
+            'hide_overflow': 'hide_overflow',
         }
         return self.render_template('register.html', context)
 

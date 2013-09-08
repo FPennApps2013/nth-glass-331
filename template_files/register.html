@@ -4,23 +4,23 @@
 <div class="background_photos"></div>
 <div class="black_box">
     <h1 class="logo">I am a</h1>
-    <a href=""><div class="button register_button">Customer</div></a>
-    <a href=""><div class="button register_button ">Business</div></a>
+    <div class="button register_button" data-type="customer">Customer</div>
+    <div class="button register_button" data-type="business">Business</div>
 </div>
 
-<div class="add_form">
+<div class="add_form customer">
     <form action="/adduser" method="post">
-        <input type="text" name="name" placeholder="name">
-        <input type="text" name="address" placeholder="address">
-        <input type="text" name="phone" placeholder="phone">
-        <div class="allergies">
-            <label>Allergies:</label><br>
-            <input type="checkbox" name="allergy" value="milk">milk<br>
-            <input type="checkbox" name="allergy" value="meat">meat<br>
-            <input type="checkbox" name="allergy" value="nuts">nuts<br>
-            <input type="checkbox" name="allergy" value="bitch">don't be a bitch<br>
-        </div>
-        <input type="submit" value="Submit">
+        <input type="text" name="name" placeholder="Name">
+        <input type="text" name="address" placeholder="Address">
+        <input type="text" name="phone" placeholder="Phone">
+        <p class="dietrestrictions">Dietary Restrictions</p>
+        <div id="dietrestrictions"><span>
+            <input type="checkbox" id="check1" /><label for="check1">Dairy</label>
+            <input type="checkbox" id="check2" /><label for="check2">Nuts</label>
+            <input type="checkbox" id="check3" /><label for="check3">Meat</label>
+            <input type="checkbox" id="check4" /><label for="check4">Shellfish</label>
+        </span></div>
+        <input type="submit" class="submit" value="Create Account" />
     </form>
 </div>
 

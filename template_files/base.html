@@ -4,12 +4,17 @@
         <title>Decisions</title>
         <link rel="stylesheet" href="/static/stylesheets/main.css">
         <link href='http://fonts.googleapis.com/css?family=Lato:300,700' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+
     </head>
     <body>
-        <div class="page_wrapper {{ gray }}">
+        <div class="page_wrapper {{ hide_overflow }}">
         {% block content %}
         {% endblock %}
         </div>
     </body>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
     <script src="/static/js/Placeholders.min.js"></script>
+    <script src="/static/js/register.js"></script>
 </html>
