@@ -23,6 +23,11 @@ div.page_wrapper
     /* background stuff */
 }
 
+.hide_overflow
+{
+    overflow: hidden;
+}
+
 a div
 {
     text-decoration: none;
@@ -74,6 +79,29 @@ div.black_box
     z-index: 4;
 }
 
+div.black_box.slideup
+{
+    -webkit-animation-name: slide-off-screen; /* Safari 4+ */
+    -webkit-animation-timing-function: ease-in-out;
+    -webkit-animation-fill-mode: forwards;
+    -webkit-animation-duration: 2s;
+    
+    -moz-animation-name: slide-off-screen; /* Safari 4+ */
+    -moz-animation-timing-function: ease-in-out;
+    -moz-animation-fill-mode: forwards;
+    -moz-animation-duration: 2s;
+    
+    -o-animation-name: slide-off-screen; /* Safari 4+ */
+    -o-animation-timing-function: ease-in-out;
+    -o-animation-fill-mode: forwards;
+    -o-animation-duration: 2s;
+    
+    animation-name: slide-off-screen; /* Safari 4+ */
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+    animation-duration: 2s;
+}
+
 .logo
 {
     font-size: 5em;
@@ -92,7 +120,8 @@ div.background_photos
     height: 100%;
     width: 100%;
 
-    background: url(http://farm2.staticflickr.com/1410/543330359_ddc3295035.jpg) no-repeat center center fixed; 
+    background: url(http://farm4.staticflickr.com/3362/4593964455_89a56d91e9.jpg) no-repeat center center fixed;
+/*    background: url(http://farm2.staticflickr.com/1410/543330359_ddc3295035.jpg) no-repeat center center fixed; */
     /*background: url( http://farm1.staticflickr.com/62/155903230_afbc19f646.jpg) no-repeat center center fixed; */
     -webkit-background-size: cover;
     moz-background-size: cover;
@@ -107,21 +136,111 @@ div.register_button
     height:45px;
     width:150px;
     background-color:#009939;
+    color:#FFFFFF;
     font-size: 2em;
     padding:5px;
     text-align:center;
     float:left;
-    margin-right:15px;
+    margin-right:5px;
+}
+
+div.register_button:hover 
+{
+    background-color:#069F3F !important;
+    border: 1px solid #009636;
+	-webkit-box-shadow: 0 1px 1px rgba(0,0,0,.1);
+	-moz-box-shadow: 0 1px 1px rgba(0,0,0,.1);
+	box-shadow: 0 1px 1px rgba(0,0,0,.1);
+    color:#FFF;
+}
+
+div.register_button:active 
+{
+    background-color:#009636 !important;
+    border-color:none;
+	-webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,.2);
+	-moz-box-shadow: inset 0 1px 2px rgba(0,0,0,.2);
+	box-shadow: inset 0 1px 2px rgba(0,0,0,.2);
 }
 
 div.add_form
 {
+    height: 400px;
+    width: 350px;
     position:absolute;
-    width:300px;
-    height:300px;
-    background-color:rgb(51,51,51);
-    top:0;
-    left:0;
+    
+    top: 150%;
+    left: 50%;
+    
+    color:#FFF;
+    
+    margin: 0px;
+    margin-top: -200px;
+    margin-left: -200px;
+    padding: 25px;
+    opacity: 0;
+}
+
+div.add_form.register
+{
+    -webkit-animation-name: display-registration-form; /* Safari 4+ */
+    -webkit-animation-timing-function: ease-in-out;
+    -webkit-animation-fill-mode: forwards;
+    -webkit-animation-duration: 1s;
+    
+    -moz-animation-name: display-registration-form; /* Safari 4+ */
+    -moz-animation-timing-function: ease-in-out;
+    -moz-animation-fill-mode: forwards;
+    -moz-animation-duration: 1s;
+    
+    -o-animation-name: display-registration-form; /* Safari 4+ */
+    -o-animation-timing-function: ease-in-out;
+    -o-animation-fill-mode: forwards;
+    -o-animation-duration: 1s;
+    
+    animation-name: display-registration-form; /* Safari 4+ */
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+    animation-duration: 1s;
+}
+
+div.add_form input 
+{
+    display: block;
+    margin: auto;
+    width: 90%;
+    font-size: 1.10em;
+    line-height:2.5em;
+    margin-bottom: 10px;
+    padding: 4px 0px 4px 10px;
+    
+    border-radius:5px;
+    border: transparent 1px solid;
+}
+
+div.add_form input.submit 
+{
+    margin-top: 20px;
+    padding: 4px 0px 4px 10px;
+    background: #d14836;
+    color: #fff;
+}
+
+p.dietrestrictions
+{
+    margin: 0px 0px 2px 0px;
+    font-weight: 400;
+}
+
+#dietrestrictions
+{
+    width: 100%;
+    padding-left: 2px;
+}
+
+#dietrestrictions input
+{
+    display: inline-block;
 }
 
 div.login_button
@@ -179,14 +298,98 @@ div.login_button:active
     margin-right: 5%;
     height: 186px;
  }
- 
+  
+.customer_information
+ {
+    position:absolute;
+    z-index:4;
+    left:4%;
+    top:2%;
+    color:#FFFFFF !important;
+    width: 40%;
+    margin-right: 5%;
+    height: 186px;
+ }
+
+#feed_button
+ {
+    position:absolute;
+    font-size:5em;
+    top:50%;
+    left:50%;
+    color:#FFF;
+    padding:10px;
+    text-align:center;
+    width:400px;
+    height:100px;
+    border-radius:5px;
+    border: 1px solid #d44331;
+    background-color:#dd4b39;
+    margin: -50px 0 0 -200px;
+ }
+
+#feed_button:hover
+{
+    background-color:#df4f3e;
+    border: 1px solid #df5f5f;
+    -webkit-box-shadow: inset 0 0 3px 1px #df6f7f !important;
+    -moz-box-shadow: inset 0 0px 1px #df6f7f;
+    box-shadow: inset 0 1px 1px #df5f5f;
+}
+
+#feed_button:active
+{
+    background-color:#d84634;
+    border: 1px solid #da4836;
+    -webkit-box-shadow: inset 0 1px 2px #d64432 !important;
+    -moz-box-shadow: inset 0 1px 2px #d64432;
+    box-shadow: inset 0 1px 2px #da4836;
+}
+
  .menu_item
  {
     width: 100%;
     height: 60px;
     background: #fff;
     border-bottom: solid 1px #e5e5e5;
+    position: relative;
+    overflow: hidden;
  }
+ 
+ .menu_item_photo
+ {
+    height: 60px;
+    width: 60px;
+    float: left;
+    
+    margin:0px;
+    margin-right: 20px;
+    padding: 0px;
+ }
+ 
+ .menu_item_name
+ {
+    line-height: 60px;
+    height: 60px;
+    width: 50%;
+    margin: 0px;
+    margin-right: 10px;
+    padding: 0px;
+    float: left;
+ }
+ 
+ .menu_item_price
+ {
+    line-height: 60px;
+    height: 60px;
+    margin: 0px;
+    margin-right: 0px;
+    padding: 0px;
+    position: absolute;
+    right: 10px;
+    top: 0px;
+ }
+ 
  
  .round_top
  {
@@ -217,6 +420,33 @@ div.login_button:active
     border-bottom: solid 1px #e5e5e5;
  }
  
+ .order_item_name
+ {
+    float: left;
+    margin-left: 10px;
+    margin-right: 20px;
+    line-height: 80px;
+    width: 25%;
+    height: 80px;
+    overflow: hidden;
+ }
+ 
+ .order_item_address, .order_item_phone
+ {
+    float: left;
+    margin-right: 20px;
+    line-height: 1.25em;
+    width: 25%;
+    height: 40px;
+    padding: 16px 0px;
+    overflow: hidden;
+ }
+ 
+ .order_item_phone
+ {
+    width: 20%;
+ }
+ 
  img.business_logo
  {
     float: left;
@@ -231,6 +461,17 @@ div.login_button:active
     margin-top: 10px;
  }
  
+ .hours
+ {
+    margin-top: 10px;
+    float: left;
+    clear: left;
+ }
+ 
+
+/*******************************************************************************
+ *************************** BUTTON STYLE ************************************
+ ******************************************************************************/
  
 .button
 {
@@ -256,6 +497,36 @@ div.login_button:active
     top: 20px;
     right: 0px;
     float: right !important;
+    color: #fff !important;
+}
+
+.accept
+{
+    background: #009939 !important;
+}
+
+.accept:hover
+{
+    background: #039C3C !important;
+}
+
+.accept:active
+{
+    background: #009636 !important;
+}
+
+.deny
+{
+    background: #d14836 !important;
+    margin-right: 10px;
+}
+
+.deny:hover
+{
+}
+
+.deny:active
+{
 }
 
 .button:hover
@@ -276,4 +547,50 @@ div.login_button:active
 	-moz-box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
 	box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
 	color: #222;
+}
+
+
+/*******************************************************************************
+ *************************** CSS ANIMATIONS ************************************
+ ******************************************************************************/
+ @-webkit-keyframes display-registration-form {
+  0%   { opacity: 0; }
+  50%  { opacity: .6;}
+  100% { opacity: 1; top: 50%;}
+}
+@-moz-keyframes display-registration-form {
+  0%   { opacity: 0; }
+  50%  { opacity: .6;}
+  100% { opacity: 1; top: 50%;}
+}
+@-o-keyframes display-registration-form {
+  0%   { opacity: 0; }
+  50%  { opacity: .6;}
+  100% { opacity: 1; top: 50%;}
+}
+@keyframes display-registration-form {
+  0%   { opacity: 0; }
+  50%  { opacity: .6;}
+  100% { opacity: 1; top: 50%;}
+}
+
+ @-webkit-keyframes slide-off-screen {
+  0%   { opacity: 1; }
+  50%  { opacity: .4;}
+  100% { opacity: 0; top: -150%;}
+}
+@-moz-keyframes slide-off-screen {
+  0%   { opacity: 1; }
+  50%  { opacity: .4;}
+  100% { opacity: 0; top: -150%;}
+}
+@-o-keyframes slide-off-screen {
+  0%   { opacity: 1; }
+  50%  { opacity: .4;}
+  100% { opacity: 0; top: -150%;}
+}
+@keyframes slide-off-screen {
+  0%   { opacity: 1; }
+  50%  { opacity: .4;}
+  100% { opacity: 0; top: -150%;}
 }
